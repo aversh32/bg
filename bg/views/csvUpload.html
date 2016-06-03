@@ -1,0 +1,39 @@
+<div class="accordion">
+    <div id="uploadCSV">
+        <iframe src="about:blank" id="" name="send_frame" style="display:none"></iframe>
+
+        <form class="form-horizontal" target="send_frame" id="form_{{id}}" role="form" id="csvForm" method="post" enctype="multipart/form-data" action="/uploadFile">
+
+            <div class="form-group bordered">
+                <label for="theFileCSV" class="col-sm-2 control-label">Загрузите файл</label>
+                <div class="col-sm-10">
+                    <input type="hidden" name="id" value="{{id}}">
+                    <input type="file" name="file" id="theFileCSV" onchange="document.getElementById('form_{{id}}').submit();" style="padding: 15px 20px; font-size: 14px; line-height: 1.42857;">
+                </div>
+            </div>
+
+
+            <!--<div class="form-group bordered">
+                <label for="phoneName" class="col-sm-2 control-label">Имя колонки телефона</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="phoneName" id="phoneName" placeholder="phone">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nameName" class="col-sm-2 control-label">Имя колонки имени</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="nameName" id="nameName" placeholder="name">
+                </div>
+            </div>-->
+
+            <!--<div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="submit" class="btn btn-default" value="Загрузить">
+                </div>
+            </div>-->
+
+        </form>
+    </div>
+</div>
+<div class="uploaded_table"></div>
+<div class="afterTable_js"></div>

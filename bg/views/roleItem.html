@@ -1,0 +1,34 @@
+<div class="roleItem">
+    <div class="role_info{{me?' role_info_me':''}}">
+        {{if !me}}
+        <!--<span class="icon mini-close js_btn_remove"></span>-->
+        {{/if}}
+        <span class="avatar avatar_right">
+            {{if avatar}}
+                <img src="{{avatar}}">
+            {{/if}}
+        </span>
+        {{name||login||email||phone}}
+
+        {{foreach roles}}
+            <div class="right_info">
+
+                {{name}}
+                <span class="action js_btn_toggle">details</span>
+                <div class="role_details">
+                    {{foreach rights}}
+
+                        <div class="role_right role_right{{type==1?'_group action js_btn_more':'_item'}}">
+                            {{action}}
+                        </div>
+                    {{/foreach}}
+                </div>
+            </div>
+        {{/foreach}}
+        {{if !me}}
+        <a href="" class="js_add_button js_btn_addrole"><i class="icon mini-plus"></i> Добавить роль</a>
+        {{/if}}
+        <div class="clearfix"></div>
+    </div>
+
+</div>

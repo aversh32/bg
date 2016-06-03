@@ -1,0 +1,18 @@
+{
+  "user": {
+    "description": [],
+    "args": [],
+    "needUser": false,
+    "name": "user"
+  },
+  "project": {
+    "description": [],
+    "args": [
+      "pid",
+      "type",
+      "data"
+    ],
+    "needUser": false,
+    "name": "project"
+  }
+}

@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+  <soap:Body>
+    <ns1:MCResrvReq xmlns:ns1="http://mobicom.oceanbank.ru/xsd" ns1:version="1.0" ns1:hash="cf4X4O9zqbbPgdR05BFI9A==">
+      <ns1:Agregator>
+        <ns1:id>{{agregatorId}}</ns1:id>
+      </ns1:Agregator>
+      <ns1:Merchant>
+        <ns1:id>{{merchantId}}</ns1:id>
+      </ns1:Merchant>
+      <ns1:Client>
+        <ns1:Phone>
+          <ns1:number>{{phone}}</ns1:number>
+        </ns1:Phone>
+      </ns1:Client>
+      <ns1:Payment>
+        <ns1:amount>{{amount}}</ns1:amount>
+        <ns1:currency>643</ns1:currency>
+      </ns1:Payment>
+      <ns1:Transaction>
+        <ns1:id>{{transactionId}}</ns1:id>
+      </ns1:Transaction>
+    </ns1:MCResrvReq>
+  </soap:Body>
+</soap:Envelope>

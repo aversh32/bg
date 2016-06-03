@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Admin panel</title>
+    <script src="/js/widgets.js"></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/admin/borsh.css" rel="stylesheet"/>
+    <script src="/js/image_upload.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/list.js"></script>
+    <script src="/model/query.js"></script>
+    <script src="/js/admin/borsh.js"></script>
+</head>
+<body>
+    <!--<div class="cursor">
+        &nbsp;
+    </div>-->
+    <div class="back"></div>
+    <span class="search_predefined" data="user: * group by this.group">Пользователи</span>
+    <span class="search_predefined" data="project: * group by this.creator && user[this.creator] && (user[this.creator].login || user[this.creator].email || user[this.creator].phone)">Проекты</span>
+    <span class="search_predefined" data="company: * group by this.creator && user[this.creator] && (user[this.creator].login || user[this.creator].email || user[this.creator].phone)">Компании</span>
+    <span class="search_predefined" data="sender: *">Отправители</span>
+    <span class="search_predefined" data="statistic: * from: 2015-07">Статистика</span>
+    <span class="search_predefined" data="zone: *">Зонирование</span>
+    <div class="search">
+        <input type="text" id="pSearch" value="" style="width:100%">
+    </div>
+    <div class="list"></div>
+    <div class="instance pane"></div>
+    <div class="detail pane"></div>
+    <div class="dialog">
+        <div class="dialog_title">Заголовок</div>
+        <div class="dialog_body">Тело</div>
+        <div class="dialog_btns">
+            <div class="dialog_btn">b1</div>
+            <div class="dialog_btn">b2</div>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+<script>
+
+
+</script>
+</body>
+</html>

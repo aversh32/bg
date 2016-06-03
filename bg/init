@@ -1,0 +1,225 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:          nodejs
+# Required-Start:    $local_fs $remote_fs $network $syslog
+# Required-Stop:     $local_fs $remote_fs $network $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: NodeJS Billingrad application
+# Description:       NodeJS Billingrad application
+### END INIT INFO
+
+cfgname=`basename "$0"`
+app_user="www-data"
+app_root="/www/new-bg/master/current"
+app_cmd="node app"
+pid_path="/var/run"
+web_server_pid_file="$pid_path/nodejs.pid"
+app_work_log=/var/log/${cfgname}-work.log
+app_error_log=/var/log/${cfgname}-error.log
+test -f "/etc/default/${cfgname}" && \
+. /etc/default/${cfgname}
+
+if ! mkdir -p "$pid_path"; then
+    echo "Could not create the path $pid_path needed to store the pids."
+    exit 1
+else
+    chown "$app_user" "$pid_path"
+fi
+
+for FILE in "$app_work_log" "$app_error_log"; do
+    DIR="`dirname $FILE`"
+    test -d "$DIR" || mkdir -p "$DIR" && chown "$app_user" "$DIR"
+done
+
+
+if [ "$USER" != "$app_user" ]
+then
+  su - "$app_user" -c "$0 \"$@\""
+  exit
+fi
+
+if ! cd "$app_root"
+then
+  echo "Failed to cd into $app_root, exiting!"
+  exit 1
+fi
+
+## Gets the pids from the files
+check_pids(){
+  # If there exists a file which should hold the value of the Unicorn pid: read it.
+  if [ -f "$web_server_pid_file" ]; then
+    wpid=`cat "$web_server_pid_file"`
+  else
+    wpid=0
+  fi
+}
+
+## Called when we have started the two processes and are waiting for their pid files.
+wait_for_pids(){
+  # We are sleeping a bit here mostly because sidekiq is slow at writing it's pid
+  i=0;
+  while [ ! -f $web_server_pid_file ]; do
+    sleep 0.1;
+    i=$((i+1))
+    if [ $((i%10)) = 0 ]; then
+      echo -n "."
+    elif [ $((i)) = 301 ]; then
+      echo "Waited 30s for the processes to write their pids, something probably went wrong."
+      exit 1;
+    fi
+  done
+  echo
+}
+
+# We use the pids in so many parts of the script it makes sense to always check them.
+# Only after start() is run should the pids change. Sidekiq sets it's own pid.
+check_pids
+
+## Checks whether the different parts of the service are already running or not.
+check_status(){
+  check_pids
+  # If NodeJS is running kill -0 $wpid returns true, or rather 0.
+  # Checks of *_status should only check for == 0 or != 0, never anything else.
+  if [ $wpid -ne 0 ]; then
+    kill -0 "$wpid" 2>/dev/null
+    web_status="$?"
+  else
+    web_status="1"
+  fi
+}
+
+## Check for stale pids and remove them if necessary.
+check_stale_pids(){
+  check_status
+  # If there is a pid it is something else than 0, the service is running if
+  # *_status is == 0.
+  if [ "$wpid" != "0" -a "$web_status" != "0" ]; then
+    echo "Removing stale NodeJS pid. This is most likely caused by NodeJS crashing the last time it ran."
+    if ! rm "$web_server_pid_file"; then
+      echo "Unable to remove stale pid, exiting."
+      exit 1
+    fi
+  fi
+}
+
+## If no parts of the service is running, bail out.
+exit_if_not_running(){
+  check_stale_pids
+  if [ "$web_status" != "0" ]; then
+    echo "NodeJS is not running."
+    exit
+  fi
+}
+## Starts NodeJS if it is not running.
+start() {
+  check_stale_pids
+
+  if [ "$web_status" != "0" ]; then
+    echo -n "Starting NodeJS"
+  fi
+
+  # Then check if the service is running. If it is: don't start again.
+  if [ "$web_status" = "0" ]; then
+    echo "NodeJS already running with pid $wpid, not restarting."
+  else
+    # Start NodeJS
+    cd "$app_root"
+    nohup $app_cmd 1>"$app_work_log" 2>"$app_error_log" &
+    echo $! > "$web_server_pid_file"
+  fi
+
+  # Wait for the pids to be planted
+  wait_for_pids
+  # Finally check the status to tell wether or not GitLab is running
+  print_status
+}
+
+## Asks the Unicorn and the Sidekiq if they would be so kind as to stop, if not kills them.
+stop() {
+  exit_if_not_running
+
+  if [ "$web_status" = "0" ]; then
+    echo -n "Shutting down NodeJS"
+  fi
+
+  # If NodeJS is running, tell it to stop;
+  if [ "$web_status" = "0" ]; then
+    kill $wpid
+  fi
+
+  # If something needs to be stopped, lets wait for it to stop. Never use SIGKILL in a script.
+  while [ "$web_status" = "0" ]; do
+    sleep 1
+    check_status
+    printf "."
+    if [ "$web_status" != "0" ]; then
+      printf "\n"
+      break
+    fi
+  done
+
+  sleep 1
+  # Cleaning up unused pids
+  rm "$web_server_pid_file" 2>/dev/null
+  # rm "$sidekiq_pid_path" # Sidekiq seems to be cleaning up it's own pid.
+
+  print_status
+}
+
+## Prints the status of GitLab and it's components.
+print_status() {
+  check_status
+  if [ "$web_status" != "0" ]; then
+    echo "NodeJS is not running."
+    return
+  fi
+  if [ "$web_status" = "0" ]; then
+      echo "NodeJS with pid $wpid is running."
+  else
+      printf "NodeJS is \033[31mnot running\033[0m.\n"
+  fi
+}
+
+## Tells unicorn to reload it's config and Sidekiq to restart
+reload(){
+    restart
+}
+
+## Restarts Sidekiq and Unicorn.
+restart(){
+  check_status
+  if [ "$web_status" = "0" ]; then
+    stop
+  fi
+  start
+}
+
+
+### Finally the input handling.
+
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  restart)
+        restart
+        ;;
+  reload|force-reload)
+        reload
+        ;;
+  status)
+        print_status
+        exit $web_status
+        ;;
+  *)
+        echo "Usage: service `basename \"$0\"` {start|stop|restart|reload|status}"
+        exit 1
+        ;;
+esac
+
+exit

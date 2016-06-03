@@ -1,0 +1,163 @@
+{
+  "create": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Создание списка контактов\r\n        #in#\r\n            data\r\n                name: text - Название списка\r\n        #ok\r\n            list-id\r\n        "
+      }
+    ],
+    "args": [
+      "user",
+      "data",
+      "util"
+    ],
+    "needUser": true,
+    "name": "create"
+  },
+  "addItem": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Добавление телефона в список\r\n        #in#\r\n            id: list-id - id списка, в который добавляем\r\n            data\r\n                phone: phone - Телефон\r\n                [sex]: enum - male\\female || м\\ж\\хз || другой формат\r\n                [email]: email\r\n                [любые другие данные, полезно для шаблонизации]\r\n        #out\r\n            #ok\r\n                item-id\r\n            #errors\r\n                Список не существует\\нет прав\r\n                #error\r\n                    noSuchList\r\n        "
+      }
+    ],
+    "args": [
+      "user",
+      "id",
+      "data",
+      "util"
+    ],
+    "needUser": true,
+    "name": "addItem"
+  },
+  "editItem": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Добавление телефона в список\r\n        #in#\r\n            id: list-id - id списка, в котором редактируется запись\r\n            data\r\n                id: item-id - ID элемента списка\r\n                [любые новые данные] (произойдёт наложение на старые)\r\n        #out\r\n            #ok\r\n                item-id\r\n            #errors\r\n                Список не существует\\нет прав\r\n                #error\r\n                    noSuchList\r\n        "
+      },
+      {
+        "type": "comment",
+        "text": "var obj = instance;"
+      }
+    ],
+    "args": [
+      "user",
+      "id",
+      "data",
+      "util"
+    ],
+    "needUser": true,
+    "name": "editItem"
+  },
+  "removeItem": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Удаление телефона из списка\r\n        #in#\r\n            id: list-id - id списка, в котором редактируется запись\r\n            data\r\n                id: item-id - ID элемента списка\r\n        #out\r\n            #ok\r\n                true\r\n            #errors\r\n                Список не существует\\нет прав\r\n                #error\r\n                    noSuchList\r\n        "
+      }
+    ],
+    "args": [
+      "user",
+      "id",
+      "data",
+      "util"
+    ],
+    "needUser": true,
+    "name": "removeItem"
+  },
+  "edit": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Редактирование списка\r\n        #in#\r\n            data\r\n                id: list-id - id списка\r\n                name: text - название списка\r\n                [list]: массив объектов телефонов - Позволяет отредактировать\\удалить много телефонов одним запросом. Важно: поле id в случае создание списка телефонов таким способом нужно генерировать самостоятельно.\r\n        #out\r\n            #ok\r\n                true\r\n            #errors\r\n                Список не существует\\нет прав\r\n                #error\r\n                    noSuchList\r\n        "
+      }
+    ],
+    "args": [
+      "user",
+      "id",
+      "data",
+      "util"
+    ],
+    "needUser": true,
+    "name": "edit"
+  },
+  "remove": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Удаление списка\r\n        #in#\r\n            id: list-id - id списка\r\n        #out\r\n            #ok\r\n                true\r\n            #errors\r\n                Список не существует\\нет прав\r\n                #error\r\n                    noSuchList\r\n        "
+      }
+    ],
+    "args": [
+      "user",
+      "id",
+      "util"
+    ],
+    "needUser": true,
+    "name": "remove"
+  },
+  "export": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Экспорт списка\r\n        #in#\r\n            id: list-id - id списка\r\n            format: text - формат экспорта\r\n        #out\r\n            #ok\r\n                url - адрес для скачивания файла\r\n        "
+      }
+    ],
+    "args": [
+      "id",
+      "format",
+      "user",
+      "util"
+    ],
+    "needUser": true,
+    "name": "export"
+  },
+  "get": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Получить данные списка\r\n        #in#\r\n            id: list-id - id списка\r\n            [full]: boolean - вернуть только список номеров (false [default]) или полный объект списка (true)\r\n        #out\r\n            #ok\r\n                #title\r\n                    full = true\r\n                #js\r\n                    {\r\n                        name: name,\r\n                        list: [\r\n                            {id: id, phone: phone, name: name},\r\n                            ...\r\n                        ]\r\n                    }\r\n                #title\r\n                    full = false\r\n                #js\r\n                    [\r\n                        {id: id, phone: phone, name: name},\r\n                        ...\r\n                    ]\r\n\r\n            #errors\r\n                Список не существует\\нет прав\r\n                #error\r\n                    noSuchList\r\n        "
+      }
+    ],
+    "args": [
+      "user",
+      "id",
+      "util",
+      "full",
+      "assync"
+    ],
+    "needUser": true,
+    "name": "get"
+  },
+  "getAssync": {
+    "description": [
+      {
+        "type": "comment",
+        "text": " достаём руками"
+      }
+    ],
+    "args": [
+      "to",
+      "action",
+      "util",
+      "user"
+    ],
+    "needUser": true,
+    "name": "getAssync"
+  },
+  "list": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Получить все доступные списки\r\n        #out\r\n            #ok\r\n                [{length: n, id: id, name: name}, ...]\r\n        "
+      }
+    ],
+    "args": [
+      "user",
+      "util"
+    ],
+    "needUser": true,
+    "name": "list"
+  }
+}

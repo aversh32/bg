@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>МультиДайМеншеновый АД</title>       
+    <script src="/js/widgets.js"></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="/js/image_upload.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/list.js"></script>
+    <script src="/model/query.js"></script>
+    <style>
+        /* {
+    padding: 0; margin: 0; font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+        ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  }
+
+ li {
+    background: none repeat scroll 0 0 #f5f4ff;
+    border-bottom: 1px solid #90bade;
+    border-left: 2px solid #90bade;
+    margin: 2px 9px 0;
+    padding: 2px;
+  }
+ .tabs div {
+     float: left;
+     padding:10px;
+     border: 1px solid transparent;
+ }
+ .tabs .selected {
+     background: #eee;
+     border: 1px solid #666;
+ }*/
+        .b-tasks__line{
+            display: none;
+        }
+        .btn-del {
+            background: #800;
+            bottom: 0;
+            position: absolute;
+            right: 0;
+        }
+button.active-group,button.active-group:hover, button.active-group:active {
+    background: #080 !important;
+    color: #fff;
+}
+
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          </button>
+          <span class="brand">Administration</span>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active">
+                <a href="#">User</a>
+              </li>
+              <li class="">
+                <a href="#prefix">Prefix</a>
+              </li>
+              <li class="">
+                <a href="#log">Log</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="clear:both"></div>
+    <div id="userList" style="position: absolute;left:0;top:1em;bottom:0;overflow-y: auto;width: 20em">
+    </div>
+    <div id="prefixList" style="position: absolute;left:0;top:1em;bottom:0;overflow-y: auto;width: 20em;">
+    </div>
+    <div id="logList" style="position: absolute;left:0;top:1em;bottom:0;overflow-y: auto;width: 20em;">
+    </div>
+    <div style="left: 21em;position: absolute;top: 1em;bottom:1em;width: 20em;" id="content">
+
+    </div>
+    <div id="detail" style="left: 42em;position: absolute;top: 1em;right: 0;">
+
+    </div>
+    <div class="theConsole" style="display:none;position:fixed;left:0;top:0;height:100%;width:100%;background: #222">
+        <div class="messages">
+
+        </div>
+        <textarea style="width:100%;height:3em;"></textarea>
+    </div>
+    <script>
+        var c = document.querySelectorAll('.theConsole' ),
+                cHidden = true,
+                toggleConsole = function(){
+                    [].slice.call(c ).forEach( function( c ){
+                        c.style.display = c.style.display === 'block'?'none': 'block';
+                    });
+
+                };
+        Z.match = function( cfg ) {
+            return function(obj) {
+                for (var i in cfg)
+                    if (cfg.hasOwnProperty(i))
+                        if (obj[i] !== cfg[i])
+                            return false;
+                return true;
+            };
+        };
+        /*var crud = (function(  ){
+            var Item = function(cfg, type){
+                this.type = type;
+                this.items = [];
+                this.operations = [];
+                this.filled = false;
+                if( typeof cfg === 'object' ){
+                    this.filter(cfg);
+                }
+
+            };
+            var nest = function( cfg, type, me ){
+                var out = new Item(cfg,type);
+
+                if( me instanceof Item ){
+                    out.parent = me;
+                    me.child = out;
+                }
+                return out;
+            };
+            Item.prototype = {
+                parent: null,
+                filter: function(cfg){
+                    this.filter = cfg;
+                    return this;
+                },
+                applyFilter: function(  ){
+                    this.items = this.items.filter( Z.match(this.filter) );
+                },
+                exec: function(){
+                    //console.log(this);
+                    if( this.parent ){
+                        if( !this.parent.filled )
+                            return this.parent.exec();
+                    }else{
+                        var type = this.type;
+                        if( type === 'project' )
+                            Z.query('project','list', {}, function( list ){
+                                this.items = list.data;
+                                this.filled = true;
+                                this.applyFilter();
+                                this.child && this.child.exec();
+                            }.bind(this));
+                        console.log(this.type)
+                    }
+                },
+                toString: function(  ){
+                    return this.exec && this.exec();
+                }
+            };
+            'user,project,request'.split(',').forEach( function( el ){
+                Item.prototype[el] = function( cfg ){
+                    return nest( cfg, el, this );
+                };
+            });
+            Z.apply(Item, Item.prototype);
+            return Item;
+        })();
+        Z.apply(window, crud);
+
+        user({name:'lol'})
+                .project({name: 'p1'})
+                .request('mc')
+                .exec();*/
+                //.set('url', input)
+
+
+
+        DOM.addListener(window, 'keypress', function( e ){
+            if( String.fromCharCode(e.which || e.keyCode).toLowerCase() === '`' ){
+                toggleConsole();
+            }
+
+        });
+        var projects = [];
+
+        Z.query('project', 'list', {}, function(data){
+            projects = data.data;
+
+        Z.query('authorize', 'getAll', {}, function(data){
+            var usersHash = Z.makeHash(data.data,'_id');
+            Z.loadTpls(['list','userItem', 'userDetails','adminLog','adminProjectItem','adminProjectDetails'], function(  ){
+                var drawProject = function( project ){
+                    document.getElementById('detail' ).innerHTML = DOM.tplRenderer('adminProjectDetails')(project);
+                    document.getElementById('proj_prop_ed' ).innerHTML = JSON.stringify(project,true,2 ).replace(/ /g,'&nbsp;').replace(/\n/g,'<br>')
+                    Z.query('project', 'getBalance', {id: project.id}, function( data ){
+                        document.getElementById('balance' ).innerHTML = data.data.amount +' руб';
+                    });
+                    DOM.addListener(document.getElementById('balance' ),'click', function(  ){
+                        $('#balanceForm' ).slideDown();
+                    });
+                    DOM.addListener(document.getElementById('smsGate' ),'click', function(  ){
+                        $('#smsGateForm' ).slideDown();
+                        $('#smsGateForm select' ).val(this.innerHTML ).change( function(  ){
+                            if(confirm('Поменять шлюз на '+this.value+'?')){
+                                project.smsGate = this.value;
+                                Z.query('project', 'edit', {data:{id: project.id, smsGate: this.value}}, function(  ){
+                                    drawProject(project);
+                                });
+                            }else
+                                drawProject(project);
+                        })
+                    });
+
+                    $('#doIt' ).click( function(  ){
+                        var val = parseInt($('#sum' ).val().replace(/,/g,'.'), 10);
+                        if( confirm('Пополнить на '+val+' рублей?') ){
+                            Z.query('balance','get',{owner: project.id},function(a){
+                               Z.query('balance','transaction',{id: 'THEWALLET', amount: val, to:a.data.id},function(a){
+                                   drawProject(project);
+                               });
+                            });
+                        }
+                    })
+                };
+                var drawUser = function( user, p ){
+                    document.getElementById('detail' ).innerHTML = '';
+                    document.getElementById('content' ).innerHTML = DOM.tplRenderer('userDetails')(user);
+                    var groups = $(document.getElementById('content' ) ).find('.btn-group .btn');
+                    groups.click( function( e ){
+                        var val = this.getAttribute('data-val');
+                        console.log(val);
+                        groups.removeClass('active-group');
+                        $(this ).addClass('active-group');
+                        if( user.group || 'null' !== val ){
+                            user.group = val;
+                            Z.query('authorize','setData',{id: user._id, data: {group: val}},function(a){
+                                drawUsers();
+                            });
+                        }
+                    });
+                    $('.onnn-btn' ).click( function(  ){
+                        if(confirm('Точно удалить?')){
+                            Z.query('authorize','remove',{id: user._id},function(a){
+                                Z.each(data.data, function( el, i ){
+                                    if(el && el._id === user._id){
+                                        data.data.splice(i, 1);
+                                        drawUsers();
+                                        document.getElementById('detail' ).innerHTML = '';
+                                        document.getElementById('content' ).innerHTML = '';
+                                    }
+                                })
+                            });
+                        }
+                    });
+                    groups.filter('[data-val='+(user.group || 'null')+']' ).addClass('active-group');
+
+                    this.list = widgets.list({
+                        addButton: 'Добавить список',
+                        itemTpl: 'adminProjectItem',
+                        cls: 'nav nav-list',
+                        canSelect: false,
+                        itemName: 'список',
+                        newItem: 'Новый список',
+                        renderTo: document.getElementById('projects' ),
+                        canRemove: false,
+                        title: '',
+                        canAdd: false,
+                        items: projects.filter( function( el ){
+                            return el.creator == user._id;
+                        }),
+                        idKey: 'id',
+                        listeners: {
+                            'action.project':
+                                function( a,b,c ){
+                                    var proj = this.itemsHash[a];
+                                    drawProject(proj);
+                                }
+                        }
+                    });
+                    p && $(this.list.itemMap[p] ).click();
+
+                };
+                var drawPrefix = function(  ){
+                    $('#userList,#logList' ).hide();
+                    $('#prefixList' ).show();
+                    var withPrefix = projects.filter(function(el){
+                        return el.sender && el.sender.length && el.sender.filter(function(el){
+                            return el.deny !== true;
+                        }).length;
+                    });
+                    var prefix = [];
+                    withPrefix.forEach( function( el ){
+                        el.sender.forEach( function( p ){
+                            p.deny !== true && prefix.push([el,p]);
+                        });
+                    });
+                    var lastSelect;
+                    this.list = widgets.list({
+                        addButton: 'Добавить список',
+                        itemTpl: 'userItem',
+                        itemName: 'список',
+                        canSelect: false,
+
+                        newItem: 'Новый список',
+                        renderTo: document.getElementById('prefixList'),
+                        canRemove: false,
+                        title: '',
+                        canAdd: false,
+                        items: prefix.map(function(p,j){
+                            return {_id: j, name: p[1].sender,login:p[1].sender,d: p,href: '#prefix'};
+                        }),
+                        cls: 'nav nav-list',
+                        idKey: '_id',
+                        listeners: {
+                            'action.user':
+                                function( a,b,c ){
+                                    if(lastSelect){
+                                        var obj = this.itemsHash[lastSelect];
+                                        obj.selected = false;
+                                        this.edit(lastSelect, obj);
+                                    }
+                                    lastSelect = a;
+                                    var obj = this.itemsHash[lastSelect];
+                                    obj.selected = true;
+                                    this.edit(lastSelect, obj);
+                                    var user = usersHash[ obj.d[0].creator];
+                                    drawUser(user, obj.d[0].id);
+                                    //drawProject( a.d[0] );
+                                }
+                        }
+                    });
+                };
+                var drawLog = function(  ){
+                    $('#logList' ).show();
+                    $('#prefixList,#userList' ).hide();
+                    Z.query('log','get', {offset:0}, function( data ){
+
+                        var lastSelect;
+                        this.list = widgets.list({
+                            addButton: 'Добавить список',
+                            itemTpl: 'userItem',
+                            itemName: 'список',
+                            canSelect: false,
+
+                            newItem: 'Новый список',
+                            renderTo: document.getElementById('logList'),
+                            canRemove: false,
+                            title: '',
+                            canAdd: false,
+                            items: data.data.reverse().map(function(p,j){
+                                var n = p.module + '/' + p.fn;
+                                return {
+                                    _id: p.eid,
+                                    name: n,
+                                    login: n,
+                                    d: p,
+                                    href: '#log'
+                                };
+                            }),
+                            cls: 'nav nav-list',
+                            idKey: '_id',
+                            listeners: {
+                                'action.user':
+                                    function( a,b,c ){
+                                        if(lastSelect){
+                                            var obj = this.itemsHash[lastSelect];
+                                            obj.selected = false;
+                                            this.edit(lastSelect, obj);
+                                        }
+                                        lastSelect = a;
+                                        var obj = this.itemsHash[lastSelect];
+                                        obj.selected = true;
+                                        this.edit(lastSelect, obj);
+
+                                        var user = usersHash[ obj.d.u ] || 'None';
+                                        var rq = JSON.stringify(JSON.parse(obj.d.data),true,2);
+                                        var ra = JSON.stringify(JSON.parse(obj.d.r),true,2);
+                                        document.getElementById('content' ).innerHTML = DOM.tplRenderer('adminLog')({user:user,data:obj.d,q:rq,a:ra});
+
+
+                                        //drawProject( a.d[0] );
+                                    }
+                            }
+                        });
+                    });
+                };
+                var drawUsers = function(  ){
+                    $('#userList' ).show();
+                    $('#prefixList,#logList' ).hide();
+                    var users = data.data,
+                        hash = Z.makeHash(users, '_id' ),
+                            lastSelect;
+                    var gH = Z.makeHash(users,'group' ),
+                        groups = [];
+                    Z.each(gH, function(key){groups.push(key);});
+                    groups.sort();
+                    gH = {};
+                    Z.each(groups, function(el, i){gH[el] = i;});
+                    users.forEach( function( el ){
+                        el._s = gH[el.group || 'null'];
+                        el._s === void 0 && (el._s=10);
+                    });
+                    users.sort(function(a,b){return a._s - b._s;});
+                    var list = [];
+                    var lastGroup;
+                    users.forEach( function( el ){
+                        if( lastGroup !== (el.group || 'null')){
+                            list.push({g: true, name: el.group})
+                            lastGroup = (el.group || 'null');
+                        }
+                        list.push(el);
+                    });
+                    this.list = widgets.list({
+                        addButton: 'Добавить список',
+                        itemTpl: 'userItem',
+                        itemName: 'список',
+                        canSelect: false,
+                        newItem: 'Новый список',
+                        renderTo: document.getElementById('userList'),
+                        canRemove: false,
+                        title: '',
+                        canAdd: false,
+                        items: list,
+                        cls: 'nav nav-list',
+                        idKey: '_id',
+                        listeners: {
+                            'action.user':
+                                function( a,b,c ){
+                                    if(lastSelect){
+                                        var obj = this.itemsHash[lastSelect];
+                                        obj.selected = false;
+                                        this.edit(lastSelect, obj);
+                                    }
+                                    lastSelect = a;
+                                    var obj = this.itemsHash[lastSelect];
+                                    obj.selected = true;
+                                    this.edit(lastSelect, obj);
+
+                                    var user = hash[a];
+                                    drawUser(user);
+                                }
+                        }
+                    });
+                };
+                $( function(){
+                    $('.navbar li a' ).click( function( el ){
+                        $('.navbar li' ).removeClass('active');
+                        $(this).parent().addClass('active');
+                    });
+
+                });
+                var resolveHash = function(){
+                    var hash = document.location.hash.replace(/^#/,'');
+                    if( hash === '' ){
+                        drawUsers();
+                    }else if(hash==='prefix'){
+                        drawPrefix();
+                    }else if(hash==='log'){
+                        drawLog();
+                    }
+                    $('.navbar li a[href='+ document.location.hash +']' ).click();
+                };
+                $(window).on('hashchange', resolveHash);
+                resolveHash();
+
+            });
+        });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+node_modules/
+.idea/
+coverage/
+public/public.bg.min.js
+public/bg.min.js
+public/img/bg/Thumbs.db
+dump.rdb
+test/

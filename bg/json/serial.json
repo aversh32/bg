@@ -1,0 +1,36 @@
+{
+  "get": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Get project access serial\r\n         "
+      }
+    ],
+    "args": [
+      "user",
+      "instance",
+      "util"
+    ],
+    "needUser": true,
+    "name": "get"
+  },
+  "create": {
+    "description": [],
+    "args": [
+      "owner",
+      "instance",
+      "util"
+    ],
+    "needUser": false,
+    "name": "create"
+  },
+  "getByOpen": {
+    "description": [],
+    "args": [
+      "open",
+      "util"
+    ],
+    "needUser": false,
+    "name": "getByOpen"
+  }
+}

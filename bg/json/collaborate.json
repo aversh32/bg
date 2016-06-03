@@ -1,0 +1,65 @@
+{
+  "getInfo": {
+    "description": [],
+    "args": [
+      "id",
+      "user",
+      "util"
+    ],
+    "needUser": true,
+    "name": "getInfo"
+  },
+  "create": {
+    "description": [],
+    "args": [
+      "data",
+      "creator",
+      "approver",
+      "resolver",
+      "type",
+      "util"
+    ],
+    "needUser": false,
+    "name": "create"
+  },
+  "remove": {
+    "description": [],
+    "args": [
+      "user",
+      "creator",
+      "data",
+      "util"
+    ],
+    "needUser": true,
+    "name": "remove"
+  },
+  "list": {
+    "description": [],
+    "args": [
+      "user",
+      "util"
+    ],
+    "needUser": true,
+    "name": "list"
+  },
+  "approve": {
+    "description": [],
+    "args": [
+      "id",
+      "user",
+      "util"
+    ],
+    "needUser": true,
+    "name": "approve"
+  },
+  "deny": {
+    "description": [],
+    "args": [
+      "id",
+      "user",
+      "util"
+    ],
+    "needUser": true,
+    "name": "deny"
+  }
+}

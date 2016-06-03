@@ -1,0 +1,223 @@
+{
+  "getSendedCount": {
+    "description": [],
+    "args": [
+      "owner",
+      "user",
+      "util"
+    ],
+    "needUser": true,
+    "name": "getSendedCount"
+  },
+  "create": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Создание рассылки\r\n        #in#\r\n            data\r\n                pid: hash - ID проекта\r\n                name: text - Название рассылки\r\n        #ok\r\n            delivery-id\r\n        "
+      },
+      {
+        "type": "comment",
+        "text": " check if user can create in this project"
+      }
+    ],
+    "args": [
+      "user",
+      "data",
+      "util"
+    ],
+    "needUser": true,
+    "name": "create"
+  },
+  "edit": {
+    "description": [],
+    "args": [
+      "user",
+      "data",
+      "util"
+    ],
+    "needUser": true,
+    "name": "edit"
+  },
+  "list": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Получить все рассылки проекта\r\n        #in#\r\n            pid: hash - project id\r\n        #out\r\n            #ok\r\n                [{name: name, did: did, name: name}, ...]\r\n        "
+      },
+      {
+        "type": "comment",
+        "text": "\r\n\r\n         "
+      },
+      {
+        "type": "comment",
+        "text": "db.getList( 'list', 'pid', pid, function( rows ){\r\n            util.ok(rows);\r\n        } );"
+      }
+    ],
+    "args": [
+      "user",
+      "pid",
+      "util"
+    ],
+    "needUser": true,
+    "name": "list"
+  },
+  "getSendCount": {
+    "description": [],
+    "args": [
+      "pid",
+      "data",
+      "util",
+      "user"
+    ],
+    "needUser": true,
+    "name": "getSendCount"
+  },
+  "getMessages": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Получить сообщения из рассылки\r\n        #in#\r\n            did: hash - ID рассылки\r\n        #out\r\n            #ok\r\n                [{mid: message-id, text: текст, status: текущий статус, createDate, deliveryCount, failedCount, progressCount}, ...]\r\n        "
+      }
+    ],
+    "args": [
+      "user",
+      "did",
+      "util"
+    ],
+    "needUser": true,
+    "name": "getMessages"
+  },
+  "createMessage": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Добавление сообщения в рассылку\r\n        #in#\r\n            did: hash - ID рассылки\r\n            data\r\n                text: hash - ID проекта\r\n            planned: bool - 0 = черновик, 1 = отослать\r\n        #ok\r\n            message-id\r\n        "
+      },
+      {
+        "type": "comment",
+        "text": " add money check"
+      },
+      {
+        "type": "comment",
+        "text": "App.io.to(did).emit('newMessage');"
+      },
+      {
+        "type": "comment",
+        "text": "var out = {mid: result.mid};"
+      },
+      {
+        "type": "comment",
+        "text": "mids[el.mid] = {\r\n                                    mid: el.mid,\r\n                                    gate: project.gate || 'terasms',\r\n                                    pid: delivery.pid,\r\n                                    sender: delivery.sender || 'billingrad',\r\n                                    text: el.text,\r\n                                    wallet: {\r\n                                        id: wallet.id,\r\n                                        amount: wallet.amount,\r\n                                        price: project.smsPrice\r\n                                    }\r\n                                };"
+      },
+      {
+        "type": "comment",
+        "text": "( msg.text, contact );;"
+      },
+      {
+        "type": "comment",
+        "text": " TODO: dehardcode"
+      },
+      {
+        "type": "comment",
+        "text": "trySend();"
+      }
+    ],
+    "args": [
+      "user",
+      "data",
+      "text",
+      "did",
+      "to",
+      "util",
+      "planned"
+    ],
+    "needUser": true,
+    "name": "createMessage"
+  },
+  "sendMessage": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "if( util.internal && pid !== void 0 ){\r\n\r\n        }else{"
+      },
+      {
+        "type": "comment",
+        "text": "}"
+      },
+      {
+        "type": "comment",
+        "text": "( msg.text, contact );;"
+      },
+      {
+        "type": "comment",
+        "text": "debugger;"
+      },
+      {
+        "type": "comment",
+        "text": "tryCheck();"
+      }
+    ],
+    "args": [
+      "user",
+      "util",
+      "mid",
+      "pid",
+      "did"
+    ],
+    "needUser": true,
+    "name": "sendMessage"
+  },
+  "messageInfo": {
+    "description": [],
+    "args": [
+      "mid",
+      "util"
+    ],
+    "needUser": false,
+    "name": "messageInfo"
+  },
+  "getStat": {
+    "description": [],
+    "args": [
+      "user",
+      "id",
+      "util"
+    ],
+    "needUser": true,
+    "name": "getStat"
+  },
+  "act": {
+    "description": [
+      {
+        "type": "comment",
+        "text": " here we can calculate everything."
+      },
+      {
+        "type": "comment",
+        "text": "( msg.text, contact );;"
+      }
+    ],
+    "args": [
+      "mid",
+      "data",
+      "util"
+    ],
+    "needUser": false,
+    "name": "act"
+  },
+  "actOld": {
+    "description": [
+      {
+        "type": "comment",
+        "text": " maybe move here"
+      }
+    ],
+    "args": [
+      "mid",
+      "contact",
+      "util"
+    ],
+    "needUser": false,
+    "name": "actOld"
+  }
+}

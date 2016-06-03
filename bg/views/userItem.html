@@ -1,0 +1,10 @@
+<li class="js_btn_user{{selected?' active':''}}">
+    {{if g}}
+        <h3>{{name||'Отсутствует'}}</h3>
+    {{else}}
+        <a href="{{href||'#'}}">
+            {{login===email?login:login+' '+email}} {{login===phone||phone==''?'':'('+phone+')'}} &rarr;
+        </a>
+    {{/if}}
+
+</li>

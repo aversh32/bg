@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8'?>\n
+<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">\n
+    <soap:Body>\n
+        <ns1:MCStartReq xmlns:ns1=\"http://mobicom.oceanbank.ru/xsd\" ns1:version=\"1.0\"
+                        ns1:hash=\"l3+LHTLCGRsl5Y5gzYon6Q==\">\n
+            <ns1:Agregator>\n
+                <ns1:id>165</ns1:id>
+                \n
+            </ns1:Agregator>
+            \n
+            <ns1:Merchant>\n
+                <ns1:id>3853</ns1:id>
+                \n
+            </ns1:Merchant>
+            \n
+            <ns1:Owner>\n
+                <ns1:id>78837DfCC2C44eab910E53E4abb4B1a6</ns1:id>
+                \n
+            </ns1:Owner>
+            \n
+            <ns1:Client>\n
+                <ns1:Phone>\n
+                    <ns1:number>9164819441</ns1:number>
+                    \n
+                </ns1:Phone>
+                \n
+            </ns1:Client>
+            \n
+            <ns1:Payment>\n
+                <ns1:amount>1000</ns1:amount>
+                \n
+                <ns1:currency>643</ns1:currency>
+                \n
+            </ns1:Payment>
+            \n
+            <ns1:Message>\n
+                <ns1:bill>123</ns1:bill>
+                \n
+                <ns1:comment>Мясо тестовое</ns1:comment>
+                \n
+            </ns1:Message>
+            \n
+        </ns1:MCStartReq>
+        \n
+    </soap:Body>
+    \n
+</soap:Envelope>"}},{"curllog":{"url":"https://mobicom.oceanbank.ru/processing/","data":"<?xml version='1.0' encoding='UTF-8'?>\n
+<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">\n
+    <soap:Body>\n
+        <ns1:MCStartReq xmlns:ns1=\"http://mobicom.oceanbank.ru/xsd\" ns1:version=\"1.0\"
+                        ns1:hash=\"l3+LHTLCGRsl5Y5gzYon6Q==\">\n
+            <ns1:Agregator>\n
+                <ns1:id>165</ns1:id>
+                \n
+            </ns1:Agregator>
+            \n
+            <ns1:Merchant>\n
+                <ns1:id>3853</ns1:id>
+                \n
+            </ns1:Merchant>
+            \n
+            <ns1:Owner>\n
+                <ns1:id>78837DfCC2C44eab910E53E4abb4B1a6</ns1:id>
+                \n
+            </ns1:Owner>
+            \n
+            <ns1:Client>\n
+                <ns1:Phone>\n
+                    <ns1:number>9164819441</ns1:number>
+                    \n
+                </ns1:Phone>
+                \n
+            </ns1:Client>
+            \n
+            <ns1:Payment>\n
+                <ns1:amount>1000</ns1:amount>
+                \n
+                <ns1:currency>643</ns1:currency>
+                \n
+            </ns1:Payment>
+            \n
+            <ns1:Message>\n
+                <ns1:bill>123</ns1:bill>
+                \n
+                <ns1:comment>Мясо тестовое</ns1:comment>
+                \n
+            </ns1:Message>
+            \n
+        </ns1:MCStartReq>
+        \n
+    </soap:Body>
+    \n
+</soap:Envelope>","resp":"<?xml version='1.0' encoding='utf-8'?>
+<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">
+    <soap:Body>
+        <soap:Fault>
+            <soap:Code>
+                <soap:Value>UNHANDLED</soap:Value>
+            </soap:Code>
+            <soap:Reason>
+                <soap:Text xml:lang=\"ru-RU\">'' is not a valid integer value</soap:Text>
+            </soap:Reason>
+        </soap:Fault>
+    </soap:Body>
+</soap:Envelope>"}},{"mcocean":{"startresp":"<?xml version='1.0' encoding='utf-8'?>
+<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">
+    <soap:Body>
+        <soap:Fault>
+            <soap:Code>
+                <soap:Value>UNHANDLED</soap:Value>
+            </soap:Code>
+            <soap:Reason>
+                <soap:Text xml:lang=\"ru-RU\">'' is not a valid integer value</soap:Text>
+            </soap:Reason>
+        </soap:Fault>
+    </soap:Body>
+</soap:Envelope>
+<?xml version='1.0' encoding='utf-8'?>
+<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">
+    <soap:Body>
+        <ns1:MCStartRes xmlns:ns1=\"http://mobicom.oceanbank.ru/xsd\"
+                        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+                        xmlns=\"http://mobicom.oceanbank.ru/xsd\" xsi:type=\"ns1:MobicomStartResponse\"
+                        ns1:version=\"1.0\">
+            <ns1:Owner>
+                <ns1:id>590aE0a677C140dc9ff380DD5Da9Aa01</ns1:id>
+                
+            </ns1:Owner>
+            <ns1:Result>
+                <ns1:code>4</ns1:code>
+                
+                <ns1:comment>Ошибка в hash-значении</ns1:comment>
+                
+            </ns1:Result>
+        </ns1:MCStartRes>
+        
+    </soap:Body>
+    
+</soap:Envelope>

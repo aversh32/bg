@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">  
+    <soap:Body>  
+        <ns1:MCStatusReq xmlns:ns1="http://mobicom.oceanbank.ru/xsd" ns1:version="1.0" ns1:hash="{{hash}}">
+            <ns1:Agregator> 
+                <ns1:id>{{agregatorId}}</ns1:id>
+            </ns1:Agregator>   
+            <ns1:Owner>
+                <ns1:id>{{transactionId}}</ns1:id>
+            </ns1:Owner>
+        </ns1:MCStatusReq>  
+    </soap:Body>  
+</soap:Envelope>  

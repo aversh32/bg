@@ -1,0 +1,107 @@
+<div class="b-statistic">
+    <span class="b-statistic__key">Создан: <b class="b-statistic__val">{{created}}</b></span>
+    <table class="b-statistic_table table">
+        <thead>
+        <tr>
+            <th class="center">Баланс</th>
+            <th class="center">Цена сегмента смс</th>
+            <th class="center">Отослано смс</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="center"><b>{{balance}} рублей</b></td>
+            <td class="center"><b>{{smsPrice}} копеек</b></td>
+            <td class="center">{{sent}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary btn_add_money_js" onclick="$(this).slideUp();$('.add_money_js').slideDown();">Пополнить баланс</button>
+    <div style="display:none" class="add_money_js">
+        <div class="col-sm-12 form-horizontal" style="background:#fff;margin:3px" class="add_money_select_js">
+            <h1>Выберите пакет</h1>
+
+            <div class="form-group col-xs-12 bordered">
+            <div class="col-xs-1" style="width:20px;padding: 7px 0 0 10px;"></div>
+            <div class="col-xs-2 h5" style="text-align: right">Количество сообщений</div>
+            <div class="col-xs-2 h5" style="text-align: center">Цена сегмента</div>
+            <div class="col-xs-3 h5" style="text-align: center">Стоимость пакета</div>
+            {{foreach package}}
+            <div class="form-group col-xs-12{{el.key%2==0?' bordered':''}}" style="{{((el.key/2)|0)%2==0?'background:#FFEED4':''}}">
+                <label style="display:block;cursor:pointer">
+                    <div class="col-xs-1" style="width:20px;padding: 7px 0 0 10px;">
+                        <input type="radio" onclick="$('.btn_add_money_real_js').removeAttr('disabled');" name="package" value="{{count}}">
+                    </div>
+                    <div class="col-xs-2 h5" style="text-align: right">{{count}}</div>
+                    <div class="col-xs-2 h5" style="text-align: center">{{price}}</div>
+                    <div class="col-xs-3 h5" style="text-align: center">{{(count*price)|0}}</div>
+                </label>
+            </div>
+            {{/foreach}}
+            <script language="JavaScript">
+
+            </script>
+
+            <div class="h3" style="padding-top:30px;clear:both">Методы оплаты</div>
+            <div>
+                <label>
+                        <input type="radio" disabled>{{foreach cards}}<img src="/img/pay/{{el.value}}.jpg" height="20px" style="margin:3px">{{/foreach}}Кредитной картой на сайте
+                </label>
+            </div>
+            <div>
+                <label>
+                <input type="radio" checked>Мобильная коммерция
+                </label>
+            </div>
+            <div class="about-info-link"><a href="#/about/" target="_blank">Ознакомиться с информацией о компании биллинград</a></div>
+            <button type="submit" disabled="disabled" style="display: block;margin: 20px 0 30px;" class="btn btn-primary btn_add_money_real_js" onclick="$('.pay_mob_frame_js').slideDown();$('.add_money_select_js').slideUp();">Перейти к оплате</button>
+
+        </div>
+
+    </div>
+    <div style="display:none" class="pay_mob_frame_js">
+
+    </div>
+    <div style="display:none" class="pay_frame_js">
+        <div class="pay-blocks">
+            <div class="pay-bl pay-left">
+                <div class="pay-icos"><img height="21" alt="" src="/img/icons/pay3.jpg"> &nbsp; <img height="34" alt="" src="/img/icons/pay4.jpg"></div>
+                <div class="form-row">
+                    <label>Номер карты</label>
+                    <input type="text" class="inp inp2" disabled="disabled">
+                    <input type="text" class="inp inp2" disabled="disabled">
+                    <input type="text" class="inp inp2" disabled="disabled">
+                    <input type="text" class="inp inp2" disabled="disabled">
+                    <div class="clear"></div>
+                </div>
+                <div class="form-row">
+                    <label>Карта годна до</label>
+                    <div class="ffSelectWrapper"><div class="ffSelect" style="z-index: 10; position: relative;"><a class="ffSelectButton" href="javascript:void(0)" style="height: 28px;"><span>10</span></a><div class="ffSelectMenuWrapper" style="position: absolute; display: none; top: 28px;"><div class="ffSelectMenuTop"><span></span></div><div class="ffSelectMenuMidBG"><div class="ffSelectMenuMid" style="overflow: auto;"><ul data-ds="false" data-cts="1000"><li class="on selected"><span data-val="10">10</span></li><li><span data-val="10">10</span></li><li><span data-val="10">10</span></li><li><span data-val="10">10</span></li></ul></div></div><div class="ffSelectMenuBottom"><span></span></div></div></div><select style="display: none;"><option>10</option><option>10</option><option>10</option><option>10</option></select></div>
+                    <div class="ffSelectWrapper"><div class="ffSelect" style="z-index: 10; position: relative;"><a class="ffSelectButton" href="javascript:void(0)" style="height: 28px;"><span>17</span></a><div class="ffSelectMenuWrapper" style="position: absolute; display: none; top: 28px;"><div class="ffSelectMenuTop"><span></span></div><div class="ffSelectMenuMidBG"><div class="ffSelectMenuMid" style="overflow: auto;"><ul data-ds="false" data-cts="1000"><li class="on selected"><span data-val="17">17</span></li><li><span data-val="10">10</span></li><li><span data-val="10">10</span></li><li><span data-val="10">10</span></li></ul></div></div><div class="ffSelectMenuBottom"><span></span></div></div></div><select style="display: none;"><option>17</option><option>10</option><option>10</option><option>10</option></select></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="form-row">
+                    <label>Держатель карты</label>
+                    <input type="text" class="inp" disabled="disabled">
+                    <div class="clear"></div>
+                </div>
+
+            </div>
+            <div class="pay-bl pay-right">
+                <div class="form-row">
+                    <label>CVC / CCV</label>
+                    <input type="text" class="inp inp2" disabled="disabled">
+                    <div class="help">
+                        <img alt="" src="/img/icons/qv.png">
+                        <div class="help-sh"><img alt="" src="/img/bg/sm-card.png"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="pay-sbm">
+                <input type="submit" disabled="disabled" value="Оплатить картой" class="btn-green">
+                <p class="exp">Мы не храним данные банковских карт и гарантируем безопасность платежа.</p>
+            </div>
+        </div>
+    </div>
+</div>

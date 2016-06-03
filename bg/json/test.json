@@ -1,0 +1,42 @@
+{
+  "testSum": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Функция возвращает сумму\r\n        #in\r\n            a: int\r\n            b: int\r\n        #out\r\n            #ok\r\n                {a:a,b:b,sum:a+b}\r\n        "
+      }
+    ],
+    "args": [
+      "a",
+      "b"
+    ],
+    "needUser": false,
+    "name": "testSum"
+  },
+  "testUser": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Функция возвращает логин авторизированного пользователя\r\n        #out\r\n            #ok\r\n                login\r\n        "
+      }
+    ],
+    "args": [
+      "user"
+    ],
+    "needUser": true,
+    "name": "testUser"
+  },
+  "err": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Функция возвращает ошибку\r\n        #error\r\n            Error\r\n        "
+      }
+    ],
+    "args": [
+      "util"
+    ],
+    "needUser": false,
+    "name": "err"
+  }
+}

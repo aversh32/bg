@@ -1,0 +1,22 @@
+<ul class="b-nav">
+{{foreach $valueOf()}}
+  {{if el.value=='-'}}
+    <li class="b-nav__item b-nav__item_v-line">
+    </li>
+  {{else}}
+    <li class="b-nav__item"><a href="/#/{{id}}/" class="b-nav__item-href{{active?' active':''}}">
+        {{if count}}
+            <i class="b-nav__item-count">{{count}}</i>
+        {{/if}}
+        <span class="b-nav__item-ball">
+            {{if img}}
+            <span class="avatar"><img src="{{img}}"></span>
+            {{else}}
+            <i class="icon icon_nav {{icon}}"></i>
+            {{/if}}
+        </span>
+        <span class="help-show">{{text}}</span></a>
+    </li>
+  {{/if}}
+{{/foreach}}
+</ul>

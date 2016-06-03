@@ -1,0 +1,18 @@
+<div class="senderItem">
+    {{if approved}}
+        <div class="status alert-success">
+          <strong>{{sender}}</strong> <i>— одобрено</i>
+
+
+    {{else if deny}}
+        <div class="status alert-danger">
+          <strong>{{sender}}</strong> <i>— не одобрено</i>
+
+    {{else}}
+        <div class="status alert-info">
+          <strong>{{sender}}</strong> <i>— на рассмотрении</i>
+
+    {{/if}}
+        <span class="icon mini-close js_btn_remove"></span>
+    </div>
+</div>

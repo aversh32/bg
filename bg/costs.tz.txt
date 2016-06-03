@@ -1,0 +1,40 @@
+﻿1. base costs
+ gate, service, type, cost, date
+
+3. costs package
+ count, type, duration, pack, createDate, cost
+pack:
+	0: count limited (1000) - 550
+	1: count month limited (1000 month) - 500
+
+2. project costs
+ project, service, type, cost, createDate, amount, pack
+
+pack:
+	0: unlim
+	1: limited count
+	2: limited month (30 days)
+	3: limited month (till end of)
+	4: till end of year
+
+destructor to limited duration
+
+
+transaction. send 50000 sms.
+get project sms prices:
+
+get base costs last -> redis. once a day.
+null getter -> reget
+
+get project last costs -> redis. once a day.
+null getter -> reget
+
+95 free sms 
+-> 50000 - 95; need 49905sms
+10000 sms till end of month
+-> 49905-10000; need 39905 sms
+fix price 60
+
+need 39905*0.60 money
+
+holded 95 free sms, 10000 package sms, X money.

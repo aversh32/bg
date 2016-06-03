@@ -1,0 +1,183 @@
+*, input, textarea {
+/ / cursor : none;
+    font-size: 1em !important;
+    font-family: "Courier New", monospace;
+    line-height: 1em !important;
+}
+
+.group_user {
+    color: #7f7;
+}
+.group_zone {
+    color: #ffe206;
+}
+.group_project {
+    color: #f77;
+}
+
+.group_wallet {
+    color: #a7f;
+}
+
+.group_company {
+    color: #ff8d00
+}
+
+.red {
+    color: #f77;
+}
+
+.green {
+    color: #7f7;
+}
+
+.group:after {
+    content: "\00a0";
+    white-space: pre;
+}
+
+.instance {
+    width: 35em;
+    background: #000;
+    position: absolute;
+    left: 21em;
+    top: 3em;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.detail {
+    right: 0;
+    background: #000;
+    position: absolute;
+    left: 57em;
+    top: 3em;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.list {
+    width: 20em;
+    background: #000;
+    position: absolute;
+    left: 0;
+    top: 3em;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.item {
+    cursor: pointer;
+    z-index: 2;
+}
+
+.item:hover, .item.active {
+    background: #555;
+}
+
+.back {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.cursor {
+    position: absolute;
+    z-index: 0;
+    background: rgba(203, 51, 51, 0.8);
+
+}
+
+input {
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 1em !important;
+    border: 0;
+}
+
+i {
+    color: #ff0
+}
+
+.search_predefined {
+    background: #ccc;
+    color: #000;
+    cursor: pointer;
+}
+
+.search_predefined.selected {
+    background: #444;
+    color: #fff;
+
+}
+
+.search {
+    position: absolute;
+    top: 1.5em;
+    left: 0;
+    right: 0;
+
+}
+
+.green {
+    color: #08CA08;
+}
+
+.action {
+    color: #FF3EFF;
+    cursor: pointer;
+}
+
+.dialog {
+    position: fixed;
+    width: 600px;
+    left: 50%;
+    margin-left: -300px;
+    bottom: 20%;
+    background: #ccc;
+    color: #000;
+    padding: 0.1em;
+    display: none;
+}
+
+.dialog_title {
+    background: #555;
+    color: #ccc;
+}
+
+.dialog_btn {
+    float: left;
+    margin-right: 0.5em;
+    padding: 0.2em 0.6em;
+    background: #007;
+    color: #ff0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.dialog_btns {
+    margin-top: 1em;
+    text-align: center;
+}
+
+.dialog_body {
+    padding: 0.2em;
+}
+form .hiddable {
+    display: none
+}
+
+input[type=checkbox] {
+    border-radius: 0;
+    width: 1em;
+}
+
+b {
+    color: #f00;
+}

@@ -1,0 +1,35 @@
+{
+  "ping": {
+    "description": [],
+    "args": [],
+    "needUser": false,
+    "name": "ping"
+  },
+  "stats": {
+    "description": [],
+    "args": [],
+    "needUser": false,
+    "name": "stats"
+  },
+  "getTpls": {
+    "description": [],
+    "args": [
+      "name"
+    ],
+    "needUser": false,
+    "name": "getTpls"
+  },
+  "getMenu": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "[{id:'profile', icon:'big-options', text: 'Профиль'},\r\n        {id:'projects', icon:'big-box', text: 'Статистика', count: 66},\r\n        {id:'stats', icon:'big-stat', text: 'Выплаты'},\r\n        //{id:'company', icon:'big-wallet', text: 'Компании'},\r\n        {id:'company', icon:'mini-company', text: 'Бухгалтерия'},\r\n        '-',\r\n        {id:'buh', icon:'big-briefcase', text: 'Проекты'}]"
+      }
+    ],
+    "args": [
+      "items"
+    ],
+    "needUser": false,
+    "name": "getMenu"
+  }
+}

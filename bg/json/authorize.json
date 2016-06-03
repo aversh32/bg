@@ -1,0 +1,177 @@
+{
+  "getAll": {
+    "description": [],
+    "args": [
+      "util",
+      "user"
+    ],
+    "needUser": true,
+    "name": "getAll"
+  },
+  "_login": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "  console.log(user)"
+      },
+      {
+        "type": "comment",
+        "text": "console.log(user.pasword,hashFromString(password))"
+      }
+    ],
+    "args": [
+      "login",
+      "password",
+      "util"
+    ],
+    "needUser": false,
+    "name": "_login"
+  },
+  "register": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Регистрация нового пользователя\r\n        #in\r\n            data\r\n                login: email || phone - Логин нового пользователя\r\n                password: password - Пароль\r\n        #out\r\n            Proxy data.login, data.password to <login>( login, password )\r\n            #errors\r\n                Логин уже существует\r\n                #error\r\n                    loginExists\r\n         "
+      },
+      {
+        "type": "comment",
+        "text": " to: 'zibx.mail@gmail.com',"
+      }
+    ],
+    "args": [
+      "data",
+      "util"
+    ],
+    "needUser": false,
+    "name": "register"
+  },
+  "restore": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Восстановление пароля\r\n\r\n        #in\r\n            login: email || phone - Логин пользователя\r\n            [code]: code - Код подтверждения\r\n            [password]: password - Новый пароль\r\n        "
+      },
+      {
+        "type": "comment",
+        "text": " code MUST BE wrapped by first quotes"
+      }
+    ],
+    "args": [
+      "login",
+      "password",
+      "code",
+      "util"
+    ],
+    "needUser": false,
+    "name": "restore"
+  },
+  "login": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n         Авторизация\r\n         #in\r\n            login: email || phone - Логин пользователя\r\n            [password]: password - Пароль. Пока as is, рекомендую уже сейчас передавать sha256(password). Если пароль не указан, но у пользователя имеется телефон, то будет произведена авторизация по смс.\r\n            [code]: Код подтверждения\r\n         #out\r\n            #ok\r\n                session-id\r\n            #errors\r\n                Если в базе нет такого пользователя\r\n                #error\r\n                    wrongLogin\r\n\r\n                Если пароль неправильный\r\n                #error\r\n                    wrongPassword\r\n                Если в профиле задан телефон, и [code] не передан (нормальный кейс получения кода подтверждения)\r\n                #error\r\n                    code\r\n                Если [code] неправильный\r\n                #error\r\n                    wrongCode\r\n\r\n         "
+      },
+      {
+        "type": "comment",
+        "text": "util.error('No phone assigned');"
+      },
+      {
+        "type": "comment",
+        "text": "when double authorize || from mobile"
+      },
+      {
+        "type": "comment",
+        "text": " code MUST BE wrapped by first quotes"
+      },
+      {
+        "type": "comment",
+        "text": " register user if not exist"
+      },
+      {
+        "type": "comment",
+        "text": "util.error('wrongLogin');"
+      }
+    ],
+    "args": [
+      "login",
+      "password",
+      "code",
+      "util"
+    ],
+    "needUser": false,
+    "name": "login"
+  },
+  "getCode": {
+    "description": [],
+    "args": [
+      "phone",
+      "util"
+    ],
+    "needUser": false,
+    "name": "getCode"
+  },
+  "registerSMS": {
+    "description": [],
+    "args": [
+      "phone",
+      "code",
+      "util"
+    ],
+    "needUser": false,
+    "name": "registerSMS"
+  },
+  "getUserByHash": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n         Получить данные профиля пользователя по хэшу\r\n         #in\r\n            hash: session-id - Строка, полученная при логине\r\n         #out\r\n             #ok\r\n                {\"login\": \"userLogin\", avatar: \"imgSrc\", \"email\": \"email\", \"phone\": \"\"}\r\n             #errors\r\n                Если хэш ошибочный\r\n                 #error\r\n                    wrongSession\r\n         "
+      }
+    ],
+    "args": [
+      "hash",
+      "util"
+    ],
+    "needUser": false,
+    "name": "getUserByHash"
+  },
+  "getUserById": {
+    "description": [],
+    "args": [
+      "id",
+      "util"
+    ],
+    "needUser": false,
+    "name": "getUserById"
+  },
+  "remove": {
+    "description": [],
+    "args": [
+      "util",
+      "id",
+      "user"
+    ],
+    "needUser": true,
+    "name": "remove"
+  },
+  "setData": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n         Редактирование проекта\r\n         #in\r\n            data\r\n                [phone]: phone - Телефон пользователя\r\n                [email]: email - Email пользователя\r\n                [avatar]: src - Аватар\r\n                [Любые другие данные]\r\n         #out\r\n             Proxy <getUserByHash>\r\n         "
+      },
+      {
+        "type": "comment",
+        "text": " TODO: выяснить всё ли норм с правами"
+      }
+    ],
+    "args": [
+      "data",
+      "id",
+      "user",
+      "hash",
+      "util"
+    ],
+    "needUser": true,
+    "name": "setData"
+  }
+}

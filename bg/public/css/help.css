@@ -1,0 +1,165 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-size: 15px;
+    font-family: Helvetica Neue, Helvetica, Arial;
+}
+p {
+    padding-left: 20px;
+}
+.functionName {
+    padding: 30px 20px 0 20px;
+    font-size: 50px;
+    font-weight: bold;
+}
+.block_in {
+    margin: 0 20px 5px;
+    padding: 10px;
+}
+.block_in:before {
+    content: '{';
+    left: -10px;
+    position: relative;
+}
+.block_in:after {
+    content: '}';
+    left: -10px;
+    position: relative;
+}
+.prop_name {
+    font-weight: bold;
+    font-size: 20px;
+    padding-right: 10px;
+}
+.prop_type {
+    color: #679;
+}
+.prop_description {
+    display: inline-block;
+    padding-left: 10px;
+}
+.ok_answer {
+    margin-left: 20px;
+    padding: 7px;
+    background: #86F086;
+      line-height: 30px;
+    /*border-radius: 6px;*/
+}
+.error_answer {
+    margin-left: 20px;
+    padding: 7px;
+    background: #FD9595;
+      line-height: 30px;
+    /*border-radius: 6px;*/
+}
+.args {
+    margin-left: 20px;
+    font-size: 21px;
+    padding-top: 10px;
+}
+.errors, .ok_answer_title {
+    margin-left: 20px;
+    font-size: 21px;
+    margin-top: 20px;
+    color: #700;
+
+}
+.ok_answer_title {
+    color: #070;
+    padding-bottom: 10px;
+}
+.block_out {
+margin-left: 20px;
+}
+.block_js {
+    white-space: pre;
+    padding-left: 20px;
+}
+.functionList {
+    padding: 20px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    box-sizing: border-box;
+    left: 0;
+    border-right: 1px solid #ccc;
+    background: #17171d;
+    color: #fff;
+}
+.content {
+    float: right;
+    position: absolute;
+    width: 70%;
+    left: 25%;
+    top: 0;
+}
+.title {
+    font-size: 35px;
+    padding-bottom: 15px;
+}
+.fn {
+padding: 4px 0;
+font-size: 22px;
+}
+.fn a {
+color: #fbf4ff;
+text-decoration: none;
+font-size: 0.9em;
+}
+hr {
+    margin: 30px 0 0 0;
+    border-color: #17171d;
+}
+.module {
+    font-size: 25px;
+}
+.block_title p {
+    margin: 20px 0 0 0;
+}
+.block_title {
+    font-weight: bold;
+}
+.block_comment {
+    font-weight: bold;
+    font-size: 20px;
+}
+.gray {
+margin-left: 20px;
+font-size: 16px;
+font-weight: normal;
+color: #999;
+bottom: 1px;
+position: relative;
+}
+.h1 {
+    font-size:25px;
+    padding-left:10px;
+    padding-top: 20px;
+}
+.padding-top {
+    padding-top:10px
+}
+.p {
+    padding: 5px 0 0 15px;
+}
+.h2 {
+    font-size: 20px;
+    margin-left:-5px;
+    padding-top: 20px;
+}
+.padding-left {
+    padding-left:30px
+}
+.query {
+    
+}
+.block_errors p {
+  margin-top: 3px;
+}
+.block_error {
+  padding-bottom: 23px;
+}
+.fn b {
+    color: #38e564;
+    font-weight: normal;
+}

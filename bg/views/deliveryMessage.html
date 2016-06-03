@@ -1,0 +1,22 @@
+<div class="js_message" style="position:relative" data-id="{{mid}}">
+    <span class="js_message_date">{{dateTimeFormatter(createDate)}}:</span>
+    <span class="js_message_progress">
+        {{if progressCount}}<span title="В очереди" class="js_m_p js_m_p_progress">{{progressCount}}</span>{{/if}}
+        {{if deliveryCount}}<span title="Доставлено" class="js_m_p js_m_p_deliver">{{deliveryCount}}</span>{{/if}}
+        {{if failedCount}}<span title="Не доставлено" class="js_m_p js_m_p_fail">{{failedCount}}</span>{{/if}}
+        {{if deliveryCount>0 || failedCount>0}}
+            <span class="js_m_p js_m_p_export"><a href="/api/delivery/messagecsv?mid={{mid}}&format=xlsx" target="_blank">xlsx</a>
+            <a href="/api/delivery/messagecsv?mid={{mid}}&format=csv" target="_blank">csv</a>
+            <a href="/api/delivery/messagecsv?mid={{mid}}&format=json" target="_blank">json</a>
+            </span>
+        {{/if}}
+    </span>
+    <div class="js_message_text">
+        {{text}}
+    </div>
+    <div class="js_message_stat"></div>
+    <div class="js_message_progress_bar"><div
+            class="js_mp_green" style="width:{{deliveryCount==0?0:deliveryCount/((progressCount|0)+(deliveryCount|0)+(failedCount|0))*100}}%"></div><div
+            class="js_mp_gray" style="width:{{deliveryCount==0&&failedCount==0?100:progressCount/((progressCount|0)+(deliveryCount|0)+(failedCount|0))*100}}%"></div><div
+            class="js_mp_red" style="width:{{failedCount==0?0:failedCount/((progressCount|0)+(deliveryCount|0)+(failedCount|0))*100}}%"></div></div>
+</div>

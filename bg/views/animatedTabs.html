@@ -1,0 +1,14 @@
+<div class="b-tab-slider">
+<div class="b-tab-slider-text">
+    {{foreach $valueOf()}}
+        <a href="#" class="b-tab-slider-list__href b-main__title active"{{hidden?' style="display:none"':''}}>{{text}}</a>
+    {{/foreach}}
+</div>
+<ul class="b-tab-slider-list">
+    {{foreach $valueOf()}}
+    <li class="b-tab-slider-list__item">
+        {{content}}
+    </li>
+    {{/foreach}}
+</ul>
+</div>

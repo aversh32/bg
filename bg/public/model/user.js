@@ -1,0 +1,3 @@
+Z.user = {
+    data: null
+};

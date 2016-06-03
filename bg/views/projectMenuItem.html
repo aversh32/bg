@@ -1,0 +1,30 @@
+{{if active}}<div>
+    {{if !avatar}}
+    <a class="b-side__list-item stat-approve expanded"><i class="icon icon_sidebar mini-folder-c"></i> {{name}}</a>
+    {{/if}}
+    <div class="b-side__drawer stat-approve expanded" id="project-nav__armaggedon" style="height: auto;">
+        <ul class="b-profile{{!avatar?' b-profile-auto':''}}">
+            {{if avatar}}
+            <li class="b-profile__preview js-img-prop b-nav__item-ball"><span class="avatar"><img src="{{avatar}}"></span></li>
+            <li class="b-profile__name" title="{{name}}">{{name}}</li>
+            {{else if fullName}}
+            <li class="b-profile__preview js-img-prop b-nav__item-ball"><span class="avatar"></span></li>
+            <li class="b-profile__name" title="{{name}}">{{name}}</li>
+            {{/if}}
+            <li class="b-profile__proff">{{fullName}}</li>
+        </ul>
+        <a href="/#/projects/{{id}}/about/" class="b-side__list-item"><i class="icon icon_sidebar mini-info"></i> О проекте</a>
+        <a href="/#/projects/{{id}}/log/" class="b-side__list-item"><i class="icon icon_sidebar mini-stat"></i> Статистика</a>
+
+        <a href="/#/projects/{{id}}/delivery/" class="b-side__list-item"><i class="icon icon_sidebar big-sms"></i> Рассылки</a>
+        <a href="/#/projects/{{id}}/mfo/" class="b-side__list-item"><i class="icon icon_sidebar big-mfo"></i> Исходящие платежи</a>
+        <a href="/#/projects/{{id}}/mc/" class="b-side__list-item"><i class="icon icon_sidebar big-mfo"></i> Мобильная коммерция</a>
+        <a href="/#/projects/{{id}}/settings/" class="b-side__list-item"><i class="icon icon_sidebar mini-config"></i> Настройки</a>
+    </div>
+</div>
+{{else}}<div>
+    <a href="/#/projects/{{id}}/" class="b-side__list-item stat-approve collapsed">
+        <i class="icon icon_sidebar mini-folder-c"></i> {{name}}
+    </a>
+</div>
+{{/if}}

@@ -1,0 +1,86 @@
+<link rel="stylesheet" href="/css/mc.css">
+
+<form method="post" action="final.html" autocomplete="on">
+
+<div class="payler-logo" style="width: 100%;background: #3A4A6C;">
+  <a href="{{merchant_url}}" target="_blank"><img src="img/logo-min@2.png" style="border: 5px solid #3A4A6C;background: #3A4A6C"></a>
+  <div style="color: #fff;display: inline-block;margin-left: 20px;font-size: 3em;vertical-align: middle;">{{product}}</div>
+</div>
+
+
+
+<div class="rows">
+  <div class="payler-data">
+    <div class="items">
+      <dl class="item merch">
+        <dt></dt>
+        <dd></dd>
+      </dl>
+      {{if orderid}}<dl class="item invoice">
+        <dt>Заказ</dt>
+        <dd>№ {{orderid}}</dd>
+      </dl>
+      {{/if}}<dl class="item summ">
+        <dt>Сумма платежа</dt>
+        <dd><strong>{{amount_format}}&nbsp;руб.</strong></dd>
+      </dl>
+      <dl class="item summ">
+        <dt>Комиссия</dt>
+        <dd><strong>{{more}}&nbsp;%</strong></dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="payler-form">
+    <div class="payler-form-group">
+      <div class="label"><label for="PaylerCardNum">Номер телефона:</label></div>
+      <div class="items">
+        <input type="tel" class="cc-number trigger-help" id="BgPhoneNumber" x-autocompletetype="cc-number" placeholder="" required="" maxlength="15" autocomplete="off">
+        <span class="phone-prefix">+7</span>
+
+        <div class="sprite help-popup popup1"></div>
+      </div>
+    </div>
+    
+    <p class="agreement">
+        Совершая ввод данных, убедитесь что ознакомились с политикой безопасности нашего шлюза <a href="http://billingrad.com/" target="_blank">Billingrad</a>.
+Мы несем ответственность за обработку персональных данных в соответствии со стандартом 152 ФЗ.
+    </p>
+    
+  </div>
+  <div class="payler-aside">
+      <div class="languages">
+        <!--<span class="rus active"><span class="sprite rus"></span> на русском</span>
+        <span class="eng active"><span class="sprite eng"></span> on english</span>-->
+      </div>
+      
+      <div class="payler-timer">
+        <span class="label">
+          <!--<strong>Время сессии:</strong><br>
+          Осталось: 20 минут 31 секунда<br>-->
+        </span>
+      </div>
+  </div>
+
+</div>
+  
+  
+<div class="payler-action">
+  <div class="payler-action-button">
+    <input type="submit" class="button btn btn-default" id="BgPostButton" value="Оплатить" disabled="disabled">
+    <input type="button" class="button btn btn-default" id="BgButtonCancel" value="Отменить" onclick="$('.add_money_js').hide();$( '.btn_add_money_js' ).show();$('.pay_mob_frame_js').hide();">
+  </div>
+
+  
+</div>
+
+<div class="payler-footer">
+  <div class="rows">
+    <div class="copyright">© 2014 <strong>Billingrad</strong></div>
+    <div class="contacts">При возникновении вопросов звоните&nbsp;<a href="tel:+74953745874">+7 (495) 374-58-74</a> или&nbsp;пишите&nbsp;<a href="mailto: hello@billingrad.com">hello@billingrad.com</a></div>
+  </div>
+</div>
+      
+</form>
+        <script src="/js/jquery.mask.min.js"></script>
+        <script src="/js/main.min.js"></script>

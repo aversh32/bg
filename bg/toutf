@@ -1,0 +1,8 @@
+#!/bin/bash
+
+FFN="$1"
+filename=`basename "$FFN"`
+encoding=$(uchardet "$FFN")
+enc=`echo $encoding | sed 's#^x-mac-#mac#'`
+cat "$FFN" | perl -pe 's/\r\n/\n/g' | perl -pe 's/\n\r/\n/g' | perl -pe 's/\r/\n/g' > "$FFN.out"
+iconv -f $enc -t UTF-8 "$FFN.out"

@@ -1,0 +1,12 @@
+{{foreach $valueOf()}}
+    {{if text}}
+    <a href="/#/{{url}}/" class="b-side__list-item">
+        <i class="icon icon_{{icon}}"></i> {{text}}
+        {{if count}}
+            <i class="b-counter">{{count}}</i>
+        {{/if}}
+    </a>
+    {{else}}
+        <p class="b-side__list-title">{{el.value}}</p>
+    {{/if}}
+{{/foreach}}

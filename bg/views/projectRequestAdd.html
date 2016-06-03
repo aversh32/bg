@@ -1,0 +1,70 @@
+<div class="js_help_toggle" style="cursor: pointer;display: inline-block;border-bottom:1px dashed;margin:10px;font-size:1.1em">Помощь</div><br>
+<div class="js_template_help" style="display: none">
+    <h5>При наступлении некоторых события система может оповещать об этом ваш сервер.</h5>
+    <div>Необходимо указать тип события, указать адрес своего сервера, тип запроса. В случае POST запроса можно задать тело сообщения.</div>
+    <div>Адрес и тело будут пропущены через шаблонизатор</div>
+    <h4 style="margin-top:25px">Синтаксис шаблонов:</h4>
+    <div style="padding: 0 10px 20px">
+        <div class="rule">Значение переменной `type`: <span>{</span>{type}<span>}</span>. Если переменная не существует, то ничего страшного не произойдёт, вместо неё подставится пустая строка.</div>
+        <div class="rule">Условия: <span>{</span>{if status==success}<span>}</span>ok<span>{</span>{/if}<span>}</span></div>
+        <div class="rule">Поддерживается else:<br>
+            {{o}}if status=="success"{{c}}<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Ура<br>
+            {{o}}else{{c}}<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Не ура<br>
+            {{o}}/if{{c}}<br>
+        </div>
+        <div class="rule">И даже тернарные условия:<br>
+            {{o}}status=="success"?("Ура":status=="fail"?"Не ура":"Пока не понятно"){{c}}<br>
+        </div>
+    </div>
+    <h4 style="margin-top:25px">Переменные:</h4>
+    <div style="padding: 0 10px 20px">
+        <div class="rule">id: ID в системе</div>
+        <div class="rule">type: тип запроса</div>
+        <div class="rule">status: статус [fail||success||process]</div>
+        <div class="rule">pid: project id</div>
+        <div class="rule">unixtime: текущee время в секундах от начала эпохи Unix.</div>
+        <div class="rule">если в создании сущности есть параметр additional, то в него можно передать json объект, данные из которого можно будет использовать здесь.<br>
+        Пример:<br>
+        <div style="padding:15px">В additional передали {productId: 198213, customer: "Василий"}<br>
+        {{o}}additional.customer{{c}} вернёт `Василий`
+        </div></div>
+        <div class="rule">Множество других переменных, названия и назначение которых зависят от запроса (можно узнать у службы поддержки)</div>
+    </div>
+</div>
+<form class="form-horizontal" role="form" onsubmit="return false;">
+    <div class="form-group bordered">
+        <label for="type" class="col-xs-2 control-label">Тип</label>
+        <div class="col-xs-10">
+            <input type="text" id="type" class="input form-control" name="type" value="mc">
+        </div>
+    </div>
+    <div class="form-group bordered">
+        <label for="url" class="col-xs-2 control-label">Адрес</label>
+
+        <div class="col-xs-2">
+        <select class="form-control" name="method" type="select" value="GET">
+            <option value="GET" selected>GET</option>
+            <option value="POST">POST</option>
+            <option value="OPTIONS">OPTIONS</option>
+            <option value="HEAD">HEAD</option>
+            <option value="PUT">PUT</option>
+            <option value="DELETE">DELETE</option>
+            <option value="TRACE">TRACE</option>
+            <option value="CONNECT">CONNECT</option>
+        </select>
+        </div>
+        <div class="col-xs-8">
+            <input type="text" id="url" class="input form-control" name="url" value="http://[адрес]/?id={{o}}id{{c}}&status={{o}}status{{c}}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="req_body" class="col-xs-2 control-label">Тело</label>
+        <div class="col-xs-10">
+            <textarea class="form-control col-xs-12" id="req_body"></textarea>
+        </div>
+    </div>
+    <button class="btn btn-default js_btn_add">Добавить</button>
+    <button class="btn btn-cancel js_btn_cancel">Отменить</button>
+</form>

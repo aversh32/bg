@@ -1,0 +1,77 @@
+{
+  "create": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Создание компании\r\n        #in#\r\n            data\r\n                [avatar]: imgSrc\r\n                [bank]: text\r\n                [bik]: text\r\n                [bill]: text\r\n                [correspondenAccout]: text\r\n                [email]: text\r\n                [fullName]: text\r\n                [inn]: text\r\n                [kpp]: text\r\n                name: text - название компании\r\n                [officialAddress]: text\r\n                [ogrn]: text\r\n                [phone]: phone\r\n                [realAddress]: text\r\n                [shortName]: translit_text\r\n\r\n        #ok\r\n            company-id\r\n        "
+      }
+    ],
+    "args": [
+      "user",
+      "data",
+      "util"
+    ],
+    "needUser": true,
+    "name": "create"
+  },
+  "edit": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Редактирование компании\r\n        #in#\r\n            data\r\n                id: company-id\r\n                [любые редактируемые данные]\r\n\r\n        #out\r\n            #ok\r\n                true\r\n            #errors\r\n                Компания не существует\r\n                #error\r\n                    noSuchCompany\r\n        "
+      }
+    ],
+    "args": [
+      "user",
+      "id",
+      "data",
+      "util"
+    ],
+    "needUser": true,
+    "name": "edit"
+  },
+  "remove": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Удаление компании\r\n        #in#\r\n            id: company-id - ID удаляемой компании\r\n\r\n        #out\r\n            #ok\r\n                true\r\n            #errors\r\n                Компании с указанным id не существует || нет прав на удаление\r\n                #error\r\n                    noSuchCompany\r\n        "
+      }
+    ],
+    "args": [
+      "user",
+      "id",
+      "util"
+    ],
+    "needUser": true,
+    "name": "remove"
+  },
+  "get": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Получить данные компании по id\r\n        #in#\r\n            id: company-id - ID проекта\r\n\r\n        #out\r\n            #ok\r\n                {все данные as is}\r\n            #errors\r\n                Компании с указанным id не существует || нет прав на удаление\r\n                #error\r\n                    noSuchCompany\r\n        "
+      }
+    ],
+    "args": [
+      "user",
+      "util",
+      "id"
+    ],
+    "needUser": true,
+    "name": "get"
+  },
+  "list": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Получить список компаний\r\n        #out\r\n            #ok\r\n                [{\"name\": \"companyName\"... все данные}, ...]\r\n        "
+      }
+    ],
+    "args": [
+      "user",
+      "util"
+    ],
+    "needUser": true,
+    "name": "list"
+  }
+}

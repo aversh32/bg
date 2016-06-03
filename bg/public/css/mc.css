@@ -1,0 +1,731 @@
+.sprite {
+  background-image: url(../images/sprite-billingrad.png);
+  background-position: top left;
+  background-size: 520px 141px;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+
+.sprite.lock {
+  background-position: -50px -10px;
+  width: 40px;
+  height: 40px;
+}
+
+.sprite.rus {
+  background-position: -119px -18px;
+  width: 22px;
+  height: 23px;
+}
+
+.sprite.eng {
+  background-position: -179px -18px;
+  width: 22px;
+  height: 23px;
+}
+
+.sprite.popup1 {
+  background-position: -340px 0px;
+  width: 175px;
+  height: 120px;
+}
+
+.payler-logo {
+  width: 280px;
+  text-align: center;
+  margin: 20px auto;
+}
+.payler-logo img {
+  max-width: 100%;
+  max-height: 100px;
+  display: inline-block;
+  border-width: 0;
+}
+
+@media screen and (min-width: 595px) {
+  .payler-logo {
+    text-align: left;
+    margin: 0px;
+    padding: 20px;
+    float: left;
+  }
+
+  .payler-timer {
+    margin-left: 20px;
+  }
+}
+@media screen and (min-width: 595px) {
+  .payler-logo {
+    padding: 20px 60px;
+  }
+}
+@media screen and (min-width: 760px) {
+  .payler-logo {
+    width: 300px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+  }
+}
+.payler-data {
+  margin: 0;
+  clear: both;
+  border-bottom: 1px solid #2ca3ce;
+  padding-bottom: 20px;
+}
+.payler-data .items {
+  display: block;
+  width: 100%;
+  clear: both;
+  display: table;
+}
+.payler-data .items:after {
+  clear: both;
+  content: '';
+}
+.payler-data .item {
+  display: block;
+  float: none;
+  width: 100%;
+  margin: 0;
+}
+.payler-data .item > dt {
+  padding-left: 10px;
+  font-size: 14px;
+  line-height: 20px;
+  float: left;
+  clear: left;
+}
+.payler-data .item > dd {
+  float: right;
+  margin: 0;
+  font-size: 14px;
+  padding-right: 10px;
+}
+.payler-data .item .summ > * {
+  text-align: right;
+  padding-right: 10px;
+  padding-left: 0;
+}
+
+@media screen and (min-width: 595px) {
+  .payler-data {
+    margin: 0px;
+    padding: 0 10px 20px 10px;
+  }
+  .payler-data .item {
+    float: left;
+    width: 33.333333%;
+  }
+  .payler-data .item > dt {
+    display: block;
+    float: none;
+    clear: none;
+  }
+  .payler-data .item > dd {
+    float: none;
+    padding-left: 10px;
+    padding-right: 0;
+  }
+}
+@media screen and (min-width: 760px) {
+  .payler-data {
+    border-bottom: 0;
+    padding: 0 60px 20px 40px;
+    margin-bottom: 40px;
+  }
+}
+@media screen and (min-width: 1010px) {
+  .payler-data {
+    float: left;
+    width: 25%;
+    padding: 0 20px;
+  }
+  .payler-data .item {
+    float: none;
+    width: auto;
+    text-align: right;
+    margin-bottom: 20px;
+  }
+  .payler-data .item > dd {
+    font-size: 16px;
+  }
+  .payler-data .item .summ > * {
+    padding: 0;
+  }
+  .payler-data .item .summ > dd {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .payler-data {
+    padding-right: 4%;
+    padding-top: 20px;
+  }
+  .payler-data .item > dt {
+    font-size: 14px;
+  }
+}
+.payler-aside {
+  margin: 0;
+  padding-top: 0px;
+  text-align: center;
+}
+
+.payler-aside .languages {
+  line-height: 20px;
+  font-size: 14px;
+}
+
+.payler-aside .languages span {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.payler-aside .languages .active {
+  color: #aaa;
+}
+
+.payler-aside .languages > span {
+  margin: 0 10px;
+}
+
+.payler-timer {
+  font-size: 13px;
+}
+
+@media screen and (min-width: 760px) {
+  .payler-aside {
+    float: left;
+    width: 30%;
+    padding-right: 60px;
+    text-align: left;
+  }
+
+  .payler-aside .languages > span {
+    display: block;
+    margin: 0 0 20px 0;
+    padding-left: 20px;
+    text-align: left;
+  }
+
+  .payler-timer {
+    margin-left: 20px;
+    font-size: 13px;
+  }
+}
+@media screen and (min-width: 1010px) {
+  .payler-aside {
+    float: left;
+    width: 25%;
+    padding-left: 0px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .payler-aside {
+    padding-left: 2%;
+  }
+}
+.payler-footer {
+  margin: 40px 10px 40px 10px;
+  font-size: 14px;
+  text-align: center;
+  padding-bottom: 80px;
+}
+
+.payler-footer .copyright {
+  margin-bottom: 10px;
+}
+
+.payler-footer .contacts {
+  text-align: center;
+}
+
+@media screen and (min-width: 590px) {
+  .payler-footer {
+    margin: 40px 60px 20px 60px;
+    text-align: left;
+    padding-bottom: 20px;
+  }
+
+  .payler-footer .copyright {
+    width: 40%;
+    float: left;
+  }
+
+  .payler-footer .contacts {
+    width: 60%;
+    float: left;
+    text-align: right;
+  }
+}
+
+
+button {
+  cursor: pointer;
+}
+
+.rows {
+  display: block;
+  width: 100%;
+  clear: both;
+  display: table;
+}
+.rows:after {
+  clear: both;
+  content: '';
+}
+
+.payler-error-popup {
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  left: 0;
+  width: 100%;
+  height: auto;
+  background-color: rgba(204, 68, 49, 0.8);
+  color: #fff;
+  padding: 20px 50px 20px 25px;
+  overflow: hidden;
+  transition: top .5s ease;
+}
+.payler-error-popup.hide {
+  top: -300px;
+}
+.payler-error-popup .close {
+  position: absolute;
+  display: block;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  line-height: 40px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 100px;
+  width: 40px;
+  height: 40px;
+}
+.payler-error-popup .close:hover {
+  border-color: white;
+}
+
+.payler-form, .payler-result {
+  margin: 20px 0;
+  border-bottom: 1px solid #2ca3ce;
+  padding-bottom: 20px;
+}
+
+.payler-form-group {
+  clear: both;
+  margin: 10px 0;
+  padding: 0 20px;
+}
+
+.payler-form-group:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+
+.payler-form-group .items {
+  margin-top: 10px;
+}
+
+.payler-form-group .note {
+  display: block;
+  font-style: normal;
+  font-size: 14px;
+  color: #888;
+}
+
+.payler-form-group .block,
+.payler-form-group .items input,
+.payler-form-group .help {
+  display: inline-block;
+}
+
+.payler-form-group .help-popup {
+  display: none;
+  position: absolute;
+  left: -330px;
+  top: 0;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 0.25s cubic-bezier(0, 0.5, 0.38, 1.54);
+}
+
+.payler-form-group .help {
+  width: 200px;
+  vertical-align: top;
+  font-size: 14px;
+  padding-left: 10px;
+}
+
+.payler-form-group .items {
+  position: relative;
+}
+
+.payler-form-group .items input {
+  padding: 10px;
+  background-color: white;
+  color: #444444;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  font-size: 20px;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  transition: all .25s ease;
+}
+
+.payler-form-group .items input:focus {
+  border-color: #2ca3ce;
+  outline: none;
+}
+
+.payler-form-group.error .note {
+  color: #cc4431;
+}
+
+.payler-form-group.error input {
+  border-color: #cc4431;
+}
+
+@keyframes animate-error {
+  67% {
+    transform: translateX(-5px);
+  }
+
+  23% {
+    transform: translateX(5px);
+  }
+}
+
+.payler-form-group.error input {
+  animation: animate-error .15s ease-out 0s normal none;
+}
+
+#BgPhoneNumber {
+  width: 100%;
+  padding-left: 40px;
+}
+
+.phone-prefix {
+  position: absolute;
+  display: block;
+  left: 11px;
+  top: 11px;
+  font-size: 20px;
+  color: #999;
+}
+
+.agreement {
+  margin: 1em 1em;
+  font-size: 13px;
+}
+
+@media screen and (min-width: 595px) {
+  .payler-form, .payler-result {
+    margin: 20px 20px;
+  }
+
+  .payler-form-group {
+    padding: 0;
+  }
+
+  .payler-form-group .label {
+    float: left;
+    width: 25%;
+    margin-top: 20px;
+  }
+
+  .payler-form-group .items {
+    float: left;
+    width: 75%;
+    position: relative;
+  }
+
+  .payler-form-group .items .note {
+    position: absolute;
+    top: -1.2em;
+  }
+}
+@media screen and (min-width: 760px) {
+  .payler-form, .payler-result {
+    float: left;
+    width: 70%;
+    border-bottom: 0;
+    padding-right: 20px;
+    padding-left: 20px;
+    border-right: 1px solid #2ca3ce;
+    margin: 0;
+    padding-left: 50px;
+  }
+
+  .payler-form-group {
+    margin-top: 20px;
+  }
+
+  .agreement {
+    margin: 1em 0;
+    font-size: 13px;
+  }
+}
+@media screen and (min-width: 1010px) {
+  .payler-form, .payler-result {
+    float: left;
+    width: 50%;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-left: 1px solid #2ca3ce;
+  }
+
+  .payler-form-group {
+    margin-top: 20px;
+  }
+
+  .payler-form-group .items {
+    margin: 0;
+  }
+
+  .payler-form-group .label {
+    margin-top: 15px;
+  }
+
+  .payler-form-group .help-popup {
+    display: block;
+  }
+
+  .payler-form-group .help-popup.show {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@media screen and (min-width: 1200px) {
+  .payler-form, .payler-result {
+    padding-left: 4%;
+    padding-right: 4%;
+    font-size: 18px;
+  }
+
+  .payler-form-group .items input {
+    font-size: 20px;
+  }
+
+  .payler-form-group .label {
+    width: 30%;
+  }
+
+  .payler-form-group .items {
+    width: 70%;
+  }
+
+  .payler-form-group .help-popup {
+    display: block;
+    position: absolute;
+    left: -400px;
+    top: 0;
+  }
+}
+.payler-action {
+  margin: 10px 10px 20px 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+@media screen and (min-width: 590px) {
+  .payler-action {
+    margin: 40px 60px 20px 60px;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .payler-action p {
+    width: 80%;
+    text-align: center;
+    margin: 40px auto 0 auto;
+  }
+}
+@media screen and (min-width: 1020px) {
+  .payler-action p {
+    width: 60%;
+  }
+}
+/*
+.button {
+  -webkit-appearance: none;
+  padding: 15px 20px;
+  background-image: none;
+  background-color: #a3b8bf;
+  border-radius: 6px;
+  border-width: 0;
+  font-size: 18px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #fff;
+  font-weight: bold;
+}
+.button.active {
+  background-color: #2ca3ce;
+  box-shadow: inset 0 0 0 1px #2ca3ce;
+}
+.button:focus {
+  outline: none;
+}
+.button.active:active {
+  box-shadow: inset 0 0 0 1px #2ca3ce;
+  background-color: #fff;
+  color: #2ca3ce;
+}
+
+.button-group {
+  text-align: center;
+  margin: 10px 0;
+}
+*/
+.payler-message {
+  float: none;
+  text-align: center;
+  padding: 0px 0 20px 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.payler-result-sheet {
+  width: 100%;
+  margin: 0 10px;
+}
+.payler-result-sheet strong {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.payler-result-sheet tr > td:nth-child(odd) {
+  font-size: 12px;
+  width: 30%;
+  vertical-align: top;
+}
+.payler-result-sheet tr > td:nth-child(even) {
+  font-size: 14px;
+  width: 70%;
+  vertical-align: top;
+}
+
+@media screen and (min-width: 590px) {
+  .payler-result-sheet tr > td:nth-child(odd) {
+    width: 50%;
+    vertical-align: top;
+    font-size: 13px;
+  }
+  .payler-result-sheet tr > td:nth-child(even) {
+    width: 50%;
+    vertical-align: top;
+  }
+}
+#paylerPopup {
+  border: 0;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(-2000px);
+  transition: all .1s ease;
+}
+
+#paylerFade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(160, 175, 180, 0.75);
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+#paylerPopup.visible {
+  display: block;
+  transform: translateY(0);
+}
+
+#paylerPopup.visible #paylerFade {
+  opacity: 1;
+}
+
+#paylerPopupBody {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  position: fixed;
+  left: 0%;
+  top: 0px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 10px 20px -10px rgba(140, 155, 160, 0.75);
+  transform: translateY(-1000px);
+  transition: all 1s ease;
+}
+
+#paylerPopup.visible #paylerPopupBody {
+  transform: translateY(0);
+}
+
+@media screen and (min-width: 595px) {
+  #paylerPopupBody {
+    width: 80%;
+    height: auto;
+    position: fixed;
+    overflow: auto;
+    left: 50%;
+    margin-left: -40%;
+    padding: 20px;
+  }
+}
+@media screen and (min-width: 760px) {
+  #paylerPopupBody {
+    width: 50%;
+    height: auto;
+    position: fixed;
+    overflow: auto;
+    left: 50%;
+    margin-left: -25%;
+    padding: 20px;
+  }
+}
+.payler-action-button {
+  background-color: #fff;
+  padding: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+}
+
+@media screen and (min-width: 760px) {
+  .payler-action-button {
+    padding: 0;
+    background-color: transparent;
+    border-width: 0;
+    position: static;
+    width: auto;
+  }
+}
+@media screen and (max-width: 759px) {
+  .static {
+    position: static !important;
+  }
+}
+.pay_mob_frame_js {
+position: fixed;
+background: #fff;
+right: 0;
+z-index: 2;
+  top:-100%;
+  left:0;
+  color: #000;
+}
+.pay_mob_frame_js label, .pay_mob_frame_js .label label, .pay_mob_frame_js .label {
+  color: #000
+}

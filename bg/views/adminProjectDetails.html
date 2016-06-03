@@ -1,0 +1,41 @@
+<div>
+    <h3>ID: {{id}}</h3>
+    <h1>{{name}}</h1>
+    <div>Цена смс: {{smsPrice}} копеек</div>
+    <div><h3>Отправители:</h3>
+        {{foreach sender}}
+            {{if approved}}
+                <div>{{sender}}</div>
+            {{else if deny}}
+                <div>Отклонён {{sender}}</div>
+            {{else}}
+                <div>На рассмотрении {{sender}}</div>
+            {{/if}}
+        {{/foreach}}
+    </div>
+    <div><h3>Баланс:</h3>
+        <a href="javascript:void(0)" id="balance" title="Пополнить"></a>
+        <div id="balanceForm" style="display:none">
+            <div>Сумма <input id="sum" placeholder="0"> рублей</div>
+            <input type="button" id="doIt" value="Пополнить">
+        </div>
+    </div>
+
+    <div><h3>СМС гейт:</h3>
+        <a href="javascript:void(0)" id="smsGate" title="Изменить">{{smsGate||'terasms'}}</a>
+        <div id="smsGateForm" style="display:none">
+            <select>
+                <option value="terasms">terasms</option>
+                <option value="smscenter">smscenter</option>
+                <option value="chipsms">chipsms</option>
+                <option value="mock">mock</option>
+            </select>
+        </div>
+    </div>
+    <div id="proj_prop_ed"></div>
+{{foreach $valueOf()}}
+    {{if p.__el.key.substr(0,1)!='_' and el.value }}
+    <div>{{el.key}}: {{el.value}}</div>
+    {{/if}}
+{{/foreach}}
+</div>

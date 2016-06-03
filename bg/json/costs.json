@@ -1,0 +1,72 @@
+{
+  "getBase": {
+    "description": [],
+    "args": [
+      "util"
+    ],
+    "needUser": false,
+    "name": "getBase"
+  },
+  "getCosts": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "DISTINCT ON (service, type)"
+      },
+      {
+        "type": "comment",
+        "text": " implement package logics here "
+      }
+    ],
+    "args": [
+      "util",
+      "pid"
+    ],
+    "needUser": false,
+    "name": "getCosts"
+  },
+  "calculate": {
+    "description": [],
+    "args": [
+      "pid",
+      "service",
+      "data",
+      "util"
+    ],
+    "needUser": false,
+    "name": "calculate"
+  },
+  "transaction": {
+    "description": [
+      {
+        "type": "comment",
+        "text": " if there are free sms -> find packs and reduce count"
+      },
+      {
+        "type": "comment",
+        "text": "TODO real calculate for each original data opsos"
+      },
+      {
+        "type": "comment",
+        "text": " TODO: log operation"
+      },
+      {
+        "type": "comment",
+        "text": "console.log(data.filter(function(a){return a.pcid===el.pcid} ).map( function( el ){\r\n                                return {\r\n                                    type:el.type, service:el.service, amount: el.amount,cost:el.cost\r\n                                };\r\n                            })[0]);\r\n                            console.log(el.amount,'!');"
+      },
+      {
+        "type": "comment",
+        "text": " TODO transaction"
+      }
+    ],
+    "args": [
+      "user",
+      "pid",
+      "service",
+      "data",
+      "util"
+    ],
+    "needUser": true,
+    "name": "transaction"
+  }
+}

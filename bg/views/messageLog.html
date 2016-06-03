@@ -1,0 +1,47 @@
+<div>
+    <div class="smsLog_nav">
+        <div class="next"><a href="{{baseLink}}{{page}}" class="smsLog_refresh">Обновить</a></div>
+        {{if pages>1}}
+        <ul class="pager">
+
+            {{if page > 0}}
+            <li class="previous"><a href="{{baseLink}}{{page-1}}" class="smsLog_back">← Новые</a></li>
+            {{/if}}
+            <li>Страница&nbsp;{{page+1}}</li>
+            {{if page < pages-1}}
+            <li class="next"><a href="{{baseLink}}{{page+1}}" class="smsLog_forward">Старые →</a></li>
+            {{/if}}
+
+        </ul>
+        {{/if}}
+        <!--{{if page > 0}}
+            <div class="smsLog_back btn btn-sm btn-default">Назад</div>
+        {{/if}}
+        <div class="smsLog_current h4">Страница&nbsp;{{page+1}}</div>
+        {{if page < pages-1}}
+            <a href="{{baseLink}}{{page+1}}" class="smsLog_forward btn btn-sm btn-default">Вперёд</a>
+        {{/if}}-->
+    </div>
+    <div class="smsLog_items"></div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="center">Номер</th>
+            <th class="center">Текст</th>
+            <th class="center">Статус</th>
+            <th class="thin">Дата</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{foreach items}}
+        <tr>
+            <td class="center">{{phone}}</td>
+            <td class="small">{{text}}</td>
+            <td class="center">{{.statusMap[status]}}</td>
+            <td class="thin">{{date}}</td>
+        </tr>
+        {{/foreach}}
+        </tbody>
+    </table>
+
+</div>

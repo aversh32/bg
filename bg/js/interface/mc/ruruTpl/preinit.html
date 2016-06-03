@@ -1,0 +1,15 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://ruru.ru/serviceprovider/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <ser:PreInit>
+            <ser:spTrnId nil="true"/>
+            <ser:spTrnDate>{{date}}</ser:spTrnDate>
+            <ser:phone>{{phone}}</ser:phone>
+            <ser:info>{{info}}</ser:info>
+            <ser:spAccount>{{phone}}</ser:spAccount>
+            <ser:productId>{{pid}}</ser:productId>
+            <ser:amount>{{amount}}</ser:amount>
+            <ser:spId>{{service}}</ser:spId>
+        </ser:PreInit>
+    </soapenv:Body>
+</soapenv:Envelope>

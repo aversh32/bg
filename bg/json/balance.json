@@ -1,0 +1,44 @@
+{
+  "create": {
+    "description": [],
+    "args": [
+      "owner",
+      "amount",
+      "type",
+      "util",
+      "closed"
+    ],
+    "needUser": false,
+    "name": "create"
+  },
+  "transaction": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "console.log(arguments);"
+      }
+    ],
+    "args": [
+      "id",
+      "amount",
+      "to",
+      "user",
+      "util",
+      "minus"
+    ],
+    "needUser": true,
+    "name": "transaction"
+  },
+  "get": {
+    "description": [],
+    "args": [
+      "user",
+      "util",
+      "owner",
+      "from",
+      "closed"
+    ],
+    "needUser": true,
+    "name": "get"
+  }
+}

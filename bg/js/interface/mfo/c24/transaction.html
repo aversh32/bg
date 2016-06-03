@@ -1,0 +1,27 @@
+<request>
+    <auth>
+        <id>{{id}}</id>
+        <auth_type>PASSWORD</auth_type>
+        <key>{{pass}}</key>
+        <client_software>test</client_software>
+        <lang>RU</lang>
+        <sec_hw_model>hardware model</sec_hw_model>
+        <sec_os_version>linux</sec_os_version>
+        <sec_uuid>uuid</sec_uuid>
+    </auth>
+    <request_type>pay</request_type>
+    <pay>
+        <from>
+            <ccy>{{currencyFrom}}</ccy>
+            <provider>{{providerFrom}}</provider>
+        </from>
+        <to>
+            <ccy>{{currencyTo}}</ccy>
+            <provider>{{provider}}</provider>
+            <account>{{to}}</account>
+            <amount>{{amount}}</amount>
+        </to>
+        <trm_pay_id>{{tid}}</trm_pay_id>
+        <comment></comment>
+    </pay>
+</request>

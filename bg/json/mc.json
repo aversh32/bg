@@ -1,0 +1,17 @@
+{
+  "bill": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "signature=DjnQ8jSocJmiSd0Nyfiq9QerjFE="
+      }
+    ],
+    "args": [
+      "pid",
+      "phone",
+      "cost"
+    ],
+    "needUser": false,
+    "name": "bill"
+  }
+}

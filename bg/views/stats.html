@@ -1,0 +1,34 @@
+<div class="b-main__container">
+
+    <h1 class="b-main__title">Проекты</h1>
+    {{foreach $valueOf()}}
+    <div class="b-statistic">
+        <h2 class="b-statistic__title"><!--<a href="#" class="icon icon_edit mini-edit"></a>-->{{name}}</h2>
+        <span class="b-statistic__key">Статус: <b class="b-statistic__val">{{!closed?'Активен':'Закончен'}}</b></span>
+        <!--<span class="b-statistic__key">Создан: <b class="b-statistic__val">28 января 2014 в 15:04</b></span>-->
+
+        <table class="b-statistic_table table table-bordered">
+            <thead>
+            <tr>
+                <th class="center">Доход</th>
+                <th>сегодня</th>
+                <th>неделя</th>
+                <th>месяц</th>
+                <th>год</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="center"><b>в рублях</b></td>
+                <td>0,00</td>
+                <td>0,00</td>
+                <td>0,00</td>
+                <td>0,00</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{{/foreach}}
+
+
+</div>

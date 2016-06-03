@@ -1,0 +1,23 @@
+.navbar-static-top {
+    height: 60px;
+}
+.navbar-default {
+    background: #28537C;
+    border: none;
+}
+.navbar-brand {
+    height: 61px;
+    z-index: 2;
+    position: relative;
+}
+@media(min-width:768px) {
+    .sidebar {
+        margin-top: 60px;
+    }
+}
+nav a {
+    color: #fff;
+}
+.sidebar ul li {
+  border-bottom: none;
+}

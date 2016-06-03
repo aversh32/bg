@@ -1,0 +1,23 @@
+<div class="js_template_help">
+    <h4>Тестирование запроса {{id}}</h4>
+    <div>Укажите данные, которые будут подставлены в шаблонизатор. Формат данных - JSON.</div>
+    <div>В поле данных сейчас находится пример, который тоже можно использовать.</div>
+</div>
+<form class="form-horizontal" role="form" onsubmit="return false;">
+    <div class="form-group">
+        <label for="req_body" class="col-xs-2 control-label">Данные</label>
+        <div class="col-xs-10">
+            <textarea style="padding:3px;height:7em" class="form-control col-xs-12" id="req_body">{
+    "status": "{{randomStatus}}",
+    "id": {{randomId}}
+}</textarea>
+        </div>
+    </div>
+    <button class="btn btn-default js_btn_send">Отправить</button>
+<div>
+    <h4>Консоль:</h4>
+    <div class="status alert-info js_log">
+
+    </div>
+</div>
+</form>

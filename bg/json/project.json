@@ -1,0 +1,171 @@
+{
+  "getStat": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Получение статистики по проекту\r\n        #in#\r\n            id:hash - project id\r\n\r\n        #ok\r\n            {\"created\": timestamp,\"smsCount\": smsSendedCount,\"balance\":{\"amount\": balance}}\r\n        #errors\r\n            Проект с данным id отсутствует\r\n            #error\r\n                noSuchProject\r\n        "
+      }
+    ],
+    "args": [
+      "id",
+      "util",
+      "user"
+    ],
+    "needUser": true,
+    "name": "getStat"
+  },
+  "getBalance": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Получение баланса проекта проекту\r\n        #in#\r\n            id:hash - project id\r\n\r\n        #ok\r\n            {\"amount\": balance}\r\n        #errors\r\n            Проект с данным id отсутствует\r\n            #error\r\n                noSuchProject\r\n        "
+      },
+      {
+        "type": "comment",
+        "text": "console.log(balance);"
+      }
+    ],
+    "args": [
+      "user",
+      "id",
+      "util"
+    ],
+    "needUser": true,
+    "name": "getBalance"
+  },
+  "create": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Создание проекта\r\n        #in#\r\n            data\r\n                name:text - имя проекта (для отображения в системе)\r\n                fullName:text - полное название\r\n                description:text - описание проекта\r\n                avatar: imgSrc - аватарка проекта\r\n\r\n        #ok\r\n            project-id\r\n        "
+      }
+    ],
+    "args": [
+      "user",
+      "data",
+      "first",
+      "util"
+    ],
+    "needUser": true,
+    "name": "create"
+  },
+  "sender": {
+    "description": [],
+    "args": [
+      "user",
+      "instance",
+      "deny",
+      "info",
+      "util"
+    ],
+    "needUser": true,
+    "name": "sender"
+  },
+  "removeSender": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Удаление имени отправителя\r\n        #in#\r\n            data\r\n                id:project-id - ID проекта\r\n                sender:text - отправитель\r\n        #out\r\n            #ok\r\n                ok\r\n            #errors\r\n                Отправитель не существует\r\n                #error\r\n                    noSuchPrefix\r\n                Проект с указанным id не существует\r\n                #error\r\n                    noSuchProject\r\n        "
+      }
+    ],
+    "args": [
+      "user",
+      "id",
+      "sender",
+      "util"
+    ],
+    "needUser": true,
+    "name": "removeSender"
+  },
+  "addSender": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Создание запроса на подтверждение имени отправителя\r\n        #in#\r\n            data\r\n                id:project-id - ID проекта\r\n                sender:text - отправитель\r\n        #out\r\n            #ok\r\n                ok\r\n            #errors\r\n                Отправитель уже существует\r\n                #error\r\n                    alreadyExists\r\n                Проект с указанным id не существует\r\n                #error\r\n                    noSuchProject\r\n        "
+      }
+    ],
+    "args": [
+      "user",
+      "id",
+      "sender",
+      "util"
+    ],
+    "needUser": true,
+    "name": "addSender"
+  },
+  "edit": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Редактирование проекта\r\n        #in#\r\n            data\r\n                id: project-id - ID редактируемого проекта\r\n                [любые данные]\r\n\r\n        #out\r\n            #ok\r\n                true\r\n            #errors\r\n                Проект с указанным id не существует || нет прав на редактирование\r\n                #error\r\n                    noSuchProject\r\n        "
+      }
+    ],
+    "args": [
+      "user",
+      "data",
+      "util"
+    ],
+    "needUser": true,
+    "name": "edit"
+  },
+  "remove": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Удаление проекта\r\n        #in#\r\n            id: project-id - ID удаляемого проекта\r\n\r\n        #out\r\n            #ok\r\n                true06\r\n            #errors\r\n                Проект с указанным id не существует || нет прав на удаление\r\n                #error\r\n                    noSuchProject\r\n        "
+      }
+    ],
+    "args": [
+      "user",
+      "id",
+      "util"
+    ],
+    "needUser": true,
+    "name": "remove"
+  },
+  "get": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Получить данные проекта по id\r\n        #in#\r\n            id: project-id - ID проекта\r\n\r\n        #out\r\n            #ok\r\n                {\"name\": \"projectName\"... все данные}\r\n            #errors\r\n                Проект с указанным id не существует || нет прав на удаление\r\n                #error\r\n                    noSuchProject\r\n        "
+      }
+    ],
+    "args": [
+      "user",
+      "util",
+      "id"
+    ],
+    "needUser": true,
+    "name": "get"
+  },
+  "list": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Получить список проектов\r\n        #out\r\n            #ok\r\n                [{\"name\": \"projectName\", smsPrice: цена в копейках, ... все данные}, ...]\r\n        "
+      }
+    ],
+    "args": [
+      "user",
+      "util"
+    ],
+    "needUser": true,
+    "name": "list"
+  },
+  "getMessageLog": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Получить лог отправленных смс\r\n        #in#\r\n            id: project-id - ID проекта\r\n            page: int - страница\r\n\r\n        #out\r\n            #ok\r\n                #js\r\n                    {\r\n                        pages: pageCount,\r\n                        page: currentPage,\r\n                        items: [\r\n                            {id: id, text: text, phone: to, status: messageStatus, date: timestamp},\r\n                            ...\r\n                        ]\r\n                    }\r\n        "
+      }
+    ],
+    "args": [
+      "user",
+      "id",
+      "page",
+      "util"
+    ],
+    "needUser": true,
+    "name": "getMessageLog"
+  }
+}

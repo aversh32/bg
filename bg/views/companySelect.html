@@ -1,0 +1,15 @@
+<div class="b-choose-company row">
+    {{foreach $valueOf()}}
+    <div class="col-sm-4">
+        <label class="company_label">
+        <figure class="thumb thumb-middle">
+            <img src="http://lorempixel.com/200/200">
+            <figcaption><input type="checkbox" name="{{id}}"></figcaption>
+        </figure>
+
+        <small>{{name}}</small>
+        </label>
+    </div>
+    {{/foreach}}
+
+</div>

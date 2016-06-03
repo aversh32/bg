@@ -1,0 +1,13 @@
+<h1 class="b-main__title">Проекты</h1>
+<ul class="b-tasks b-page-line">
+    <li class="b-tasks__line">
+        <label class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;<i></i> Название</label>
+    </li>
+    {{foreach $valueOf()}}
+    <li class="b-tasks__line{{el.last?' b-tasks__line_last':''}}">
+        <span class="label label-{{closed?'danger':'success'}}"><b>Р</b><span>{{closed?'Закрыт':'В работе'}}</span></span>
+        <label class="checkbox"><input type="checkbox"{{closed?' checked':''}}><i></i><div class="js_edit_icon"><i class="icon icon_pen mini-edit"></i></div> <span class="js_project_name">{{name}}</span></label>
+    </li>
+    {{/foreach}}
+    <a class="btn-add btn-add_align_right js_add_project" href="/#/{{link}}"><i class="icon mini-plus"></i>Добавить проект</a>
+</ul>

@@ -1,0 +1,14 @@
+<div class="b-tabs b-tabs_align_left bs-example bs-example-tabs">
+    <ul class="nav nav-tabs">
+        {{foreach $valueOf()}}
+            <li class="js_tab{{active?' active':''}}"><a href="{{url?url:'javascript:void(0)'}}">{{name}}</a></li>
+        {{/foreach}}
+    </ul>
+    <div class="tab-content">
+        {{foreach $valueOf()}}
+        <div class="tab-pane fade active js_pane">
+            {{content}}
+        </div>
+        {{/foreach}}
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<div>
+    Всего номеров найдено — {{count}}
+
+
+    <div class="form-group">
+        <div class="radio">
+            <label>
+                <input type="radio" name="overwrite_type" value="overwrite">
+                Перезаписать контакт лист (внимание, все номера будут удалены)
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="overwrite_type" value="update" checked="">
+                Обновить данные, сопоставив имеющиеся в списке номера со свежезагруженными данными. Добавит отсутствующие в текущем списке номера.
+            </label>
+        </div>
+    </div>
+
+    <div class="radio">
+        <label>
+            <input type="checkbox" name="agreement">
+            Все абоненты из списка дали своё согласие на получение ваших смс сообщений
+        </label>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <input type="submit" class="btn btn-default process_button" value="Сохранить">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,3 @@
+[submodule "runit-node"]
+	path = runit-node
+	url = git@bitbucket.org:billingrad/runit-node.git

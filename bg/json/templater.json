@@ -1,0 +1,16 @@
+{
+  "template": {
+    "description": [
+      {
+        "type": "comment",
+        "text": " TODO remove dirty hack"
+      }
+    ],
+    "args": [
+      "tpl",
+      "obj"
+    ],
+    "needUser": false,
+    "name": "template"
+  }
+}

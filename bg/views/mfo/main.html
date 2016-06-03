@@ -1,0 +1,45 @@
+<h3 class="tab" data-id="mfo-accounts">Счета</h3>
+<div data-tab="mfo-accounts">
+    {{foreach account}}
+    <div>
+        <span class="account-name">{{name}}</span>
+        <span class="account-type">{{type}}</span>
+        <span class="account-amount">{{ (amount/100).toFixed(2) }}</span>
+    </div>
+    {{/foreach}}
+</div>
+<h3 class="tab" data-id="mfo-transactions">Переводы</h3>
+<div data-tab="mfo-transactions">
+    <span class="action" data-act="new-mfo-transaction">Новый перевод &rarr;</span>
+    <div class="mfo-new-transaction_form" style="display: none">
+        <div>
+            Счёт
+            {{if account.length>1}}
+                <select class="new-mfo-transaction_select-account">
+                    {{foreach account}}
+                        <option value="{{aid}}">{{name}} {{(amount/100).toFixed(2)}}</option>
+                    {{/foreach}}
+                </select>
+            {{else}}
+                {{foreach account}}
+                    <span class="account-name">{{name}}</span>
+                {{/foreach}}
+            {{/if}}
+        </div>
+        <div>
+            Название <input type="text" class="new-mfo-transaction_name">
+        </div>
+        <div class="mfo-transaction-item">
+            <div><label><input type="radio" name="transactionType" checked>&nbsp;Карта</label></div>
+            <div><label><input type="radio" name="transactionType">&nbsp;Счёт</label></div>
+
+            <div class="credentials">
+                <span class="new-mfo-transaction_number">Номер карты</span> <input type="text" class="new-mfo-transaction_number">
+            </div>
+            <div class="amount">
+                Сумма <input type="number" class="new-mfo-transaction_amount"> рублей
+            </div>
+        </div>
+        <input type="button" value="Перевести" class="new-mfo-transaction_submit">
+    </div>
+</div>

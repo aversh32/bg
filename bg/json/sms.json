@@ -1,0 +1,133 @@
+{
+  "getLog": {
+    "description": [],
+    "args": [
+      "owner",
+      "page",
+      "perPage",
+      "util"
+    ],
+    "needUser": false,
+    "name": "getLog"
+  },
+  "getSendedCount": {
+    "description": [],
+    "args": [
+      "owner",
+      "util",
+      "user"
+    ],
+    "needUser": true,
+    "name": "getSendedCount"
+  },
+  "checkCode": {
+    "description": [],
+    "args": [
+      "phone",
+      "code",
+      "util"
+    ],
+    "needUser": false,
+    "name": "checkCode"
+  },
+  "sendCode": {
+    "description": [],
+    "args": [
+      "phone",
+      "text",
+      "util",
+      "manual"
+    ],
+    "needUser": false,
+    "name": "sendCode"
+  },
+  "justCheck": {
+    "description": [],
+    "args": [
+      "gate",
+      "ids",
+      "util"
+    ],
+    "needUser": false,
+    "name": "justCheck"
+  },
+  "justSend": {
+    "description": [],
+    "args": [
+      "gate",
+      "from",
+      "data",
+      "util"
+    ],
+    "needUser": false,
+    "name": "justSend"
+  },
+  "send": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Отправить смс\r\n        #in\r\n            id: project-id - ID проекта, в рамках которого отправляется смс\r\n            to: text - Список телефонов и имён (name) списков контактов, разделённый точкой с запятой (;)\r\n            text: text - Текст сообщения\r\n            from: text - sender\r\n            [calculate]: boolean - Если true, то функция не будет отправлять смс, а только вычислит количество сегментов и проверит достаточно ли баланса\r\n        #out\r\n            #ok\r\n                #comment\r\n                    collect = true\r\n                #js\r\n                    {\r\n                        targets: receiverCount,\r\n                        count: partsCount,\r\n                        price: totalPrice,\r\n                        available: avaliableMoney\r\n                    }\r\n\r\n                #comment\r\n                    collect = false (default). Вернёт количество поставленных в очередь на отправку сегментов\r\n                {\"count\": n}\r\n            #errors\r\n                Internal error. Отсутствует баланс, привязанный к проекту\r\n                #error\r\n                    badBalance\r\n\r\n                Проект с заданным id отсутствует\r\n                #error\r\n                    noSuchProject\r\n\r\n                Префикс отсутствует в проекте\r\n                #error\r\n                    badPrefix\r\n\r\n                Префикс не прошел одобрение\r\n                #error\r\n                    Not approved prefix\r\n\r\n                Недостаточно денег\r\n                #error\r\n                    {text: 'Not enough money', info: {amount: projectBalance, sms: countSMSes}}\r\n\r\n                Шлюз не может отправить смс\r\n                #error\r\n                    Error sending sms\r\n\r\n         "
+      },
+      {
+        "type": "comment",
+        "text": " get balance of sender"
+      },
+      {
+        "type": "comment",
+        "text": "get project data"
+      },
+      {
+        "type": "comment",
+        "text": "for check of avaliability of sender"
+      },
+      {
+        "type": "comment",
+        "text": "doSend();"
+      },
+      {
+        "type": "comment",
+        "text": "doSend();"
+      },
+      {
+        "type": "comment",
+        "text": "'target' => 'target1 message1|target2 message2|target3 message3',\r\n                'message' => '',\r\n                'sender' => 'sender',\r\n                'mass_push' => '1',\r\n                'delimiter' => '|'"
+      },
+      {
+        "type": "comment",
+        "text": "\r\n                console.dir(collectData);\r\n                console.log('####')\r\n                //console.log(data);\r\n                console.log(dataSMS);\r\n                util.ok();\r\n                return;"
+      }
+    ],
+    "args": [
+      "id",
+      "to",
+      "text",
+      "from",
+      "user",
+      "util",
+      "calculate",
+      "doNotLog"
+    ],
+    "needUser": true,
+    "name": "send"
+  },
+  "sendSMS": {
+    "description": [],
+    "args": [
+      "to",
+      "text",
+      "dateFrom",
+      "dateTo",
+      "priority"
+    ],
+    "needUser": false,
+    "name": "sendSMS"
+  },
+  "income": {
+    "description": [],
+    "args": [
+      "text"
+    ],
+    "needUser": false,
+    "name": "income"
+  }
+}

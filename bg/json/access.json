@@ -1,0 +1,32 @@
+{
+  "getAvaliable": {
+    "description": [
+      {
+        "type": "comment",
+        "text": ",'stats'/*,'payout'"
+      },
+      {
+        "type": "comment",
+        "text": "{id:'profile', icon:'big-options', text: 'Профиль'},\r\n        {id:'projects', icon:'big-box', text: 'Статистика', count: 66},\r\n        {id:'stats', icon:'big-stat', text: 'Выплаты'},\r\n            //{id:'company', icon:'big-wallet', text: 'Компании'},\r\n        {id:'company', icon:'mini-company', text: 'Бухгалтерия'},\r\n            '-',\r\n        {id:'buh', icon:'big-briefcase', text: 'Проекты'}];"
+      }
+    ],
+    "args": [
+      "hash",
+      "user"
+    ],
+    "needUser": true,
+    "name": "getAvaliable"
+  },
+  "can": {
+    "description": [],
+    "args": [
+      "uid",
+      "instance",
+      "type",
+      "action",
+      "util"
+    ],
+    "needUser": false,
+    "name": "can"
+  }
+}

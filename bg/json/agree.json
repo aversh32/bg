@@ -1,0 +1,32 @@
+{
+  "add": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Добавление согласия\r\n        #in\r\n            data: object - json объект со всеми известными данными о пользовательсом окружении\r\n            type: string - тип соглашения [mobile|web|contacts]\r\n        #out\r\n            agree-id\r\n\r\n         "
+      }
+    ],
+    "args": [
+      "data",
+      "type",
+      "user",
+      "util"
+    ],
+    "needUser": true,
+    "name": "add"
+  },
+  "get": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Получение ссылки на оферту\r\n        #in\r\n            type: string - тип оферты. [mobile|web]\r\n        #out\r\n            Ссылка на файл оферты\r\n            #errors\r\n                Оферта такого типа не существует\r\n                #error\r\n                    noOffer\r\n         "
+      }
+    ],
+    "args": [
+      "type",
+      "util"
+    ],
+    "needUser": false,
+    "name": "get"
+  }
+}

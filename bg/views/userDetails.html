@@ -1,0 +1,44 @@
+<div>
+    <div>
+        ID: {{_id}}
+    </div>
+    <div>
+        Фамилия: {{surname}}
+    </div>
+    <div>
+        Имя: {{name}}
+    </div>
+    {{if createDate}}
+    <div>
+        Дата регистрации: {{dateFormatter(createDate)}}
+    </div>
+    {{/if}}
+    <div>
+        Телефон: {{phone}}
+    </div>
+    <div>
+        Email: {{email}}
+    </div>
+    <div>
+        Login: {{login}}
+    </div>
+    <div>
+        {{if avatar}}
+        <h3>Avatar:</h3>
+        <img src="{{avatar}}" onerror="this.style.display='none';" width="200px">
+        {{/if}}
+    </div><br>
+    <div>
+        <h3>Группа:</h3>
+        <div class="btn-group">
+          <button class="btn" data-val="null">Отсутсвует</button>
+          <button class="btn" data-val="client">Клиенты</button>
+          <button class="btn" data-val="hell">Ад</button>
+        </div>
+    </div>
+    <div>
+        <h3>Проекты:</h3>
+        <div id="projects"></div>
+    </div>
+    <button class="btn btn-del onnn-btn" title="Он нам не нравится">ОННН</button>
+</div>

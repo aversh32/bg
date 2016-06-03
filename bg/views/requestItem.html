@@ -1,0 +1,15 @@
+<div class="senderItem">
+
+        <div class="status alert-success">
+
+          <strong class="status alert-danger" style="font-size: 1.2em">{{type}}</strong> {{safeTagsReplace(method)}} <i>{{safeTagsReplace(url)}}</i>
+            <span class="icon mini-close js_btn_remove"></span>
+          {{if body}}
+            <div class="status alert-info">
+                <pre>{{safeTagsReplace(body)}}</pre>
+            </div>
+          {{/if}}
+          <div class="js_btn_test" style="cursor: pointer;display: inline-block;border-bottom:1px dashed;margin:10px;font-size:1.1em">Тест</div>
+
+    </div>
+</div>

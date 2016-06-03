@@ -1,0 +1,17 @@
+<div class="panel panel-info" style="margin:10px">
+    <div class="panel-heading">
+    {{if type=='sender'}}
+        <h3 class="panel-title">Одобрение отправителя «<b>{{data.sender}}</b>»</h3>
+    {{else if type=='ability'}}
+        <h3 class="panel-title">Одобрение возможность «<b>{{data.ability}}</b>»</h3>
+    {{/if}}
+    </div>
+
+    <div class="panel-body">
+        <a href="#" class="js_btn_information">Информация</a>
+        <div class="navbar-right">
+            <a href="#" class="btn btn-success js_btn_ok" role="button">Одобрить</a>
+            <a href="#" class="btn btn-primary js_btn_fail" role="button">Отклонить</a>
+        </div>
+    </div>
+</div>

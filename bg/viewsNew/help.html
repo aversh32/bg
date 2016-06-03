@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="/css/help.css" rel="stylesheet"/>
+    <title>Docs</title>
+</head>
+<body>
+    <div class="functionList">
+        {{if up}}
+            <div class="fn" style="margin-bottom: 15px;"><a href="/api/docs" style="padding-left: 0;border-bottom: 1px dotted;">
+                &larr; список модулей
+            </a></div>
+        {{/if}}
+
+        <div class="title">
+            <img src="/img/logo-min.png" style="margin-bottom: -16px;">
+            {{itemName}}
+        </div>
+        {{if module}}
+            <div class="module">
+                {{module}}
+            </div>
+        {{/if}}
+    {{foreach list}}
+        <div class="fn">
+            {{if link}}
+                {{link}}
+            {{else}}
+                <a href="#{{name}}">{{name}}</a>
+            {{/if}}
+        </div>
+    {{/foreach}}
+    </div>
+    <div class="content">
+    {{data}}
+    </div>
+</body>
+</html>

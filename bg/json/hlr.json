@@ -1,0 +1,22 @@
+{
+  "request": {
+    "description": [
+      {
+        "type": "comment",
+        "text": "\r\n        Получение HLP\r\n        #in#\r\n            pid:hash - project id\r\n            phone:phone - телефон\r\n\r\n        #ok\r\n            {\"send_date\":\"04.08.2014 16:34:34\",\"phone\":\"7XXXYYYYYYY\",\"country\":\"Россия\",\"operator\":\"Билайн\",\"region\":\"Москва\"}\r\n        #errors\r\n            Проект с данным id отсутствует\r\n            #error\r\n                noSuchProject\r\n            Недостаточно средств\r\n            #error\r\n                notEnoughMoney\r\n            Слишком частые запросы (на один номер можно запрашивать HLR не чаще раза в 2 минуты)\r\n            #error\r\n                timeout\r\n        "
+      },
+      {
+        "type": "comment",
+        "text": " maybe move here"
+      }
+    ],
+    "args": [
+      "pid",
+      "phone",
+      "util",
+      "user"
+    ],
+    "needUser": true,
+    "name": "request"
+  }
+}

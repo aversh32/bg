@@ -1,0 +1,34 @@
+<!--{{if canAdd}}
+<a class="btn-add btn-add_align_right js_add_button" href="#"><i class="icon mini-plus"></i>Добавить {{itemName}}</a>
+{{/if}}
+{{if canRemove}}
+<a class="btn-add btn-add_align_right js_remove_button" href="#"><i class="icon mini-plus"></i>Удалить</a>
+{{/if}}
+        -->
+<div class="controls row">
+{{if canSearch}}
+    <div class="col-sm-6">
+        <div class="input-group input-group-sm">
+            <input type="search" class="form-control input-sm js_list_search" placeholder="Поиск по списку" ng-model="search">
+            <span class="input-group-addon"><i class="icon mini-search"></i></span>
+        </div>
+    </div>
+{{/if}}
+    <div class="btn-group col-sm-6">
+        <div class="pull-right">
+            {{if canAdd}}
+            <a class="btn-add btn-add_align_right js_add_button" href="#"><i class="icon mini-plus"></i>Добавить {{itemName}}</a>
+            {{/if}}
+        <!--    <button class="btn btn-link btn-sm dropdown-toggle" type="button">Обновить из CSV</button>
+            <button class="btn btn-link btn-sm dropdown-toggle" type="button">Скачать в CSV</button>-->
+        </div>
+    </div>
+</div>
+
+<div class="scroll-table">
+    <table class="table">
+        <thead><th class="table-actions"></th>{{foreach columns}}<th>{{name}}</th>{{/foreach}}</thead>
+        <tbody></tbody>
+    </table>
+</div>
+

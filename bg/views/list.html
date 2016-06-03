@@ -1,0 +1,13 @@
+{{if canAdd}}
+<a class="btn-add btn-add_align_right js_add_button" href="#"><i class="icon mini-plus"></i>Добавить {{itemName}}</a>
+{{/if}}
+{{if canRemove}}
+<a class="btn-add btn-add_align_right js_remove_button" href="#"><i class="icon mini-plus"></i>Удалить</a>
+{{/if}}
+<ul class="b-tasks b-page-line{{cls?' '+cls:''}}">
+    <li class="b-tasks__line">
+        <label class="checkbox">
+            {{if canSelect}}<input type="checkbox" class="js_select_all"><i></i>{{/if}}{{title}}
+        </label>
+    </li>
+</ul>

@@ -1,0 +1,123 @@
+<div class="{{cls}}">
+
+    <form class="form-horizontal" role="form">
+      {{foreach items}}
+        <!--div class="form-group{{bordered?' bordered':''}}"-->          
+          {{if type == 'title'}}
+            <div class='b-main__title'>{{text}}</div>
+          {{else if type == 'header'}}
+          	<h3>{{header}} <small>{{header_small}}</small></h3>
+          {{else if type == 'label'}}
+            {{text}}
+          {{else if type == 'form-group'}}
+            <div class="form-group{{bordered?' bordered':''}}"></div>
+          {{else if type == 'phones'}}
+            <div class="{{groupCls?groupCls:'form-group'}}{{bordered?' bordered':''}}">
+            <label for="input_{{type}}{{id}}{{el.key}}" class="col-xs-3 control-label">{{text}}</label>
+            <div class="col-xs-9 js_phones_input">
+                <input{{if id}} name="{{id}}"{{/if}} type="hidden" class="form-control" id="input_{{type}}{{id}}{{el.key}}" placeholder="{{placeholder}}" value="{{value}}">
+            </div>
+            </div>
+          {{else if type == 'phone'}}
+            <div class="{{groupCls?groupCls:'form-group'}}{{bordered?' bordered':''}}">
+            <label for="input_{{type}}{{id}}{{el.key}}" class="col-xs-3 control-label">{{text}}</label>
+            <div class="col-xs-9 js_phone_input">
+                <input{{if id}} name="{{id}}"{{/if}} type="hidden" class="form-control" id="input_{{type}}{{id}}{{el.key}}" placeholder="{{placeholder}}" value="{{value}}">
+            </div>
+            </div>
+          {{else if type=='company'}}
+            <div class="js_company_select">
+                <input type="hidden" {{if id}} name="{{id}}"{{/if}}">
+                <p class="b-choose-company__title">{{text}}</p>
+            </div>
+          {{else if type == 'image'}}
+            {{if justImage && false}}
+                <label title="Загрузить" for="loadImg" class="b-round b-round_220 b-round_step project-icon default big"></label>
+            {{/if}}
+			<div class="{{cls?cls:'row'}} js_avatar_upload">
+                {{if !justImage}}
+				<div class="col-sm-6">
+					<h3>{{header}} <small>{{header_small}}</small></h3>
+					<p><small>{{description}}</small></p>
+				</div>
+				<div class="col-sm-6">
+                {{else}}
+
+                {{/if}}
+					<label for="loadImg" class="js-img-prop">
+						{{if value}}
+						<figure class="avatar big b-round b-round_220 b-round-form js_image_preview" style="background-image: url({{value}})"></figure>
+						{{else}}
+						<div data-toggle="tooltip" data-placement="top" title="Загрузить" class="js_image_preview b-round b-round_220 b-round_step project-icon default big"></div>
+						{{/if}}
+					</label>
+				
+					<span class="btn-load">
+						<input id="loadImg" type="file" class="btn-load__file" {{if id}} name="{{id}}"{{/if}}">
+					</span>
+                {{if !justImage}}
+				</div>
+                {{/if}}
+			</div>
+          
+          {{else if type == 'checkbox'}}
+            <div class="{{description?'col-xs-12':'col-xs-offset-3 col-xs-9'}}{{cls?' '+cls:''}}">
+              {{if description}}
+                <p class="license">{{description}}</p>
+              {{/if}}
+                <div class="checkbox">
+                    <label>
+                        <input id="input_{{type}}{{id}}{{el.key}}"{{if id}} name="{{id}}"{{/if}} type="checkbox"{{checked?' checked':''}}><i></i> {{text}}
+                    </label>
+                </div>
+            </div>
+          {{else if type=='submit'}}
+            {{if !just}}
+            <div class="col-xs-12">
+            {{/if}}
+                <button type="submit" class="btn btn-primary {{cls?cls:'col-xs-3'}}" style="margin-top: 15px;">{{text}}</button>
+            {{if !just}}
+            </div>
+            {{/if}}
+         {{else if type=='button'}}
+            {{if !just}}
+            <div class="col-xs-12">
+            {{/if}}
+                <input id="input_{{type}}{{id}}{{el.key}}" name="{{id}}" type="button" class="btn btn-primary {{cls?cls:'col-xs-3'}}" style="margin-top: 15px;" value="{{text}}">
+            {{if !just}}
+            </div>
+            {{/if}}
+
+          {{else if type=='textarea'}}
+          	<div class="form-group{{bordered?' bordered':''}}">
+	            <label for="input_{{type}}{{id}}{{el.key}}" class="col-xs-3 control-label" >{{text}}</label>
+	            <div class="col-xs-9">
+	                <textarea{{if rows}} rows="{{rows}}"{{/if}}{{if id}} name="{{id}}"{{/if}} type="{{type}}" class="form-control" id="input_{{type}}{{id}}{{el.key}}" placeholder="{{placeholder}}">{{value}}</textarea>
+	            </div>
+	        </div>
+          {{else}}
+          	<div class="{{groupCls?groupCls:'form-group'}}{{bordered?' bordered':''}}"{{type=='hidden'?' style="display:none"':''}}>
+                {{if pencil}}
+                <label class="input-group-addon bd0" for="input_{{type}}{{id}}{{el.key}}"><i class="icon icon_pen_h1 icon_pen mini-edit"></i></label>
+                {{else}}
+	            <label for="input_{{type}}{{id}}{{el.key}}" class="col-xs-3 control-label">{{text}}</label>
+                {{/if}}
+	            {{if customInputCls}}
+                    <input{{if id}} name="{{id}}"{{/if}} type="{{type}}" class="{{customInputCls}}" id="input_{{type}}{{id}}{{el.key}}" placeholder="{{placeholder}}" value="{{value}}">
+                {{else}}
+                    <div class="col-xs-9">
+                        {{if type=='select'}}
+                        <select id="input_{{type}}{{id}}{{el.key}}" class="form-control js_select_input" name="{{id}}" type="select">
+                        </select>
+                        {{else}}
+                        <input{{if id}} name="{{id}}"{{/if}} type="{{type}}" class="form-control" id="input_{{type}}{{id}}{{el.key}}" placeholder="{{placeholder}}" value="{{value}}">
+                        {{/if}}
+                    </div>
+                {{/if}}
+
+            </div>
+          {{/if}}
+        <!--/div -->
+      {{/foreach}}
+    </form>
+</div>

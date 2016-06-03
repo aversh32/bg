@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<request>
+    <hash>{{hash}}</hash>
+    <Opcode>700</Opcode>
+    <ApplicationID>{{aid}}</ApplicationID>
+    <MethodID>
+        {{method}}
+    </MethodID>
+    <message>
+        <text>{{text}}</text>
+    </message>
+    <Receiver>
+      {{if email}}
+        <email>{{email}}</email>
+      {{else if phone}}
+        <phone>+{{phone}}</phone>
+      {{/if}}
+    </Receiver>
+</request>

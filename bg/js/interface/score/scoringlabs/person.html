@@ -1,0 +1,55 @@
+<request>
+    <ts>{{ts}}</ts>
+    <hash>{{hash}}</hash>
+    <product>{{product}}</product>
+    <data>
+        <person>
+            {{if address}}<address>
+                <building>{{address.building}}</building>
+                <city>{{address.city}}</city>
+                <flat>{{address.flat}}</flat>
+                <house>{{address.house}}</house>
+                <region>{{address.region}}</region>
+                <state>{{address.state}}</state>
+                <street>{{address.street}}</street>
+            </address>
+            {{/if}}
+            {{if phone}}<phone>
+                {{phone.code}}
+                <number>{{phone.number}}</number>
+            </phone>
+            {{/if}}
+            {{if passport}}
+            <document>
+                {{if passport.foreign}}
+                    <foreigndocseria>{{passport.series}}</foreigndocseria>
+                    <foreigndocnum>{{passport.number}}</foreigndocnum>
+                    <foreigndocissuingdate>{{passport.date}}</foreigndocissuingdate>
+                {{else}}
+                    <docseria>{{passport.series}}</docseria>
+                    <docnum>{{passport.number}}</docnum>
+                    <docissuingdate>{{passport.date}}</docissuingdate>
+                {{/if}}
+            </document>
+            {{/if}}
+            {{if birth}}<birthday>{{birth.date}}</birthday>{{/if}}
+            {{if name}}<name>{{name}}</name>{{/if}}
+            {{if surname}}<family>{{surname}}</family>{{/if}}
+            {{if middlename}}<patronim>{{middlename}}</patronim>{{/if}}
+            {{if inn}}<innfl>{{inn}}</innfl>{{/if}}
+            {{if birth && birth.place}}<birthplace>{{birth.place}}</birthplace>{{/if}}
+            {{if company}}<company>
+                <address>
+                    <city>Москва</city>
+                    <house>12</house>
+                    <street>Тверская</street>
+                </address>
+                {{if company.type}}<companyform>{{company.type}}</companyform>{{/if}}
+                {{if company.inn}}<innul>{{company.inn}}</innul>{{/if}}
+                {{if company.name}}<companyname>{{company.name}}</companyname>{{/if}}
+                {{if company.orgn}}<ogrn>34343</ogrn>{{/if}}
+            </company>
+            {{/if}}
+        </person>
+    </data>
+</request>
