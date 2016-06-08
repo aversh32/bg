@@ -26,13 +26,14 @@ module.exports = function( app ){
                         nameName = fields.nameName||'name',
                         escapeChar = fields.escape;
 
-                    var sys = require('sys');
+                    var sys = require('util');
                     var exec = require('child_process').exec;
                     var newLines = function (text) {
                         var stripped = text.replace(/\r/g,'')
                         if(stripped.split('\n').length<text.split('\r').length/2){
                             return text.replace(/\r/g,'\n').replace(/\n\n/g,'\n').replace(/\n\n/g,'\n');
                         }
+						console.log("stripped    "+stripped);
                         return stripped;
 
                     }

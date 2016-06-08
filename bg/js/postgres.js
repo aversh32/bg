@@ -257,11 +257,12 @@
                             values.push( setter( data[i] ) );
                             n++;
                         }
-
+						console.dir("Значения          "+values);
                         return q;
 
                     } ).join( ' AND ' ) : '';
                 }
+				
                 var q = 'SELECT * from '+ cfg.name +where;
                 var mapping = {};
                 for( var i in fields )
@@ -294,13 +295,27 @@
                     key;
                 if( typeof callback !== 'function' && callback !== void 0 ){
                     key = data;
+					console.log("Дата");
+					console.dir(data);
+					console.log("Коллбэк");
+					console.dir(callback);
+					console.dir(arguments[3]);
                     data = callback;
                     callback = arguments[3];
                 }else{
                     key = cfg.key;
+					console.log("Дата");
+					console.dir(data);
+					console.log("Коллбэк");
+					console.dir(callback);
+					console.dir(arguments[3]);
                 }
                 var q = 'DELETE from '+ cfg.name +' WHERE '+key+'=$1',
                     fields = cfg.fields;
+					console.log("Поля              ");
+					console.dir(fields);
+					console.dir("Запрос              "+q);
+					console.dir("Данные              "+data);
                 pg.connect( App.cfg.postgres, function(err, client, doneFn) {
                     client.query( q, [data], function( err, result ){
                         if(err){
