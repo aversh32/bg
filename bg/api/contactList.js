@@ -397,6 +397,7 @@ exports = module.exports = {
         */
 
         contacts.get( 'list', id, function( instance ){
+			console.log("id="+id);
             if( instance && (instance.creator === user._id|| user._id==='USERNAME') ){
                 contacts.getList( 'contacts', 'lid', id, function( rows ){
                     var c = rows.map(phoneMap);
@@ -479,6 +480,8 @@ exports = module.exports = {
                 Z.apply(obj, JSON.parse(el.json));
                 return obj;
             });
+			console.log("OBJ");
+				console.dir(c);
             util.ok(full ? {name: instance.name, list: c} : c);
         });
         return util.wait;

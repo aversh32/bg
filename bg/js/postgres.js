@@ -225,7 +225,7 @@
             get: function( table, data, callback, assync ){
                 var cfg = this.table[table],
                     fields = cfg.fields,
-
+					
                     values = [],
                     n = 1,
                     i, where;
@@ -235,6 +235,7 @@
                         where.push( '"'+ fields[i].dbName+'"=$'+n );
                         var setter = dataSetters[fields[i].type] || dataSetters['default'];
                         values.push( setter( data[i] ) );
+						
                         n++;
                     }
                     where = ' WHERE '+where.join(' AND ');
@@ -247,6 +248,8 @@
                                 var o = '$' + n;
                                 var setter = dataSetters[fields[el].type] || dataSetters['default'];
                                 values.push( setter( data[i] ) );
+								//console.log("SETTER     "+setter);
+								//console.log("VALUES     "+values);
                                 n++;
                                 return o;
                             } ).join( ',' ) + ')';
@@ -255,9 +258,11 @@
                             q = el + '=$' + n;
                             var setter = dataSetters[fields[el].type] || dataSetters['default'];
                             values.push( setter( data[i] ) );
+								//console.log("SETTER     "+setter);
+								//console.log("VALUES     "+values);
                             n++;
                         }
-						console.dir("Значения          "+values);
+						//console.dir("Значения          "+values);
                         return q;
 
                     } ).join( ' AND ' ) : '';
@@ -266,8 +271,12 @@
                 var q = 'SELECT * from '+ cfg.name +where;
                 var mapping = {};
                 for( var i in fields )
+				{
                     fields.hasOwnProperty(i) &&
                         (mapping[fields[i].dbName] = [i,dataGetters[fields[i].type]?dataGetters[fields[i].type]: dataGetters['default']]);
+						//console.log("mapping[fields[i].dbName]");
+						//console.dir(mapping[fields[i].dbName]);
+				}
                 pg.connect( App.cfg.postgres, function(err, client, doneFn) {
                     client.query( q, values, function( err, result ){
                         if(err){
@@ -295,27 +304,27 @@
                     key;
                 if( typeof callback !== 'function' && callback !== void 0 ){
                     key = data;
-					console.log("Дата");
+					/*console.log("Дата");
 					console.dir(data);
 					console.log("Коллбэк");
 					console.dir(callback);
-					console.dir(arguments[3]);
+					console.dir(arguments[3]);*/
                     data = callback;
                     callback = arguments[3];
                 }else{
                     key = cfg.key;
-					console.log("Дата");
+					/*console.log("Дата");
 					console.dir(data);
 					console.log("Коллбэк");
 					console.dir(callback);
-					console.dir(arguments[3]);
+					console.dir(arguments[3]);*/
                 }
                 var q = 'DELETE from '+ cfg.name +' WHERE '+key+'=$1',
                     fields = cfg.fields;
-					console.log("Поля              ");
+					/*console.log("Поля              ");
 					console.dir(fields);
 					console.dir("Запрос              "+q);
-					console.dir("Данные              "+data);
+					console.dir("Данные              "+data);*/
                 pg.connect( App.cfg.postgres, function(err, client, doneFn) {
                     client.query( q, [data], function( err, result ){
                         if(err){
@@ -445,7 +454,7 @@
                 q = 'UPDATE '+ cfg.name  +' SET '+ keys.map(function(el,i){
                         return  el +'='+ valueHolder[i];
                     }).join(',') + where +';';
-                //console.log(q,values);
+                console.log(q,values);
 
                 if( error ){
                     console.logModule('bg',q);

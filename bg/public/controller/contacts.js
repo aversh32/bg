@@ -142,9 +142,7 @@ Z.controller.contacts = {
                     },
                     addButton: function(  ){
                         var addBtn = $(this.els.js_add_button);
-
                         var thisList = this;
-
                         var lastData = {};
                         var div = document.createElement('div');
                         var form = widgets.form({

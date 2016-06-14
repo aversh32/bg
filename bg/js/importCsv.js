@@ -52,13 +52,14 @@ module.exports = function( app ){
                                 }else{
                                     var data = newLines(stdout.toString()).replace(/\r/g,'');
                                     resp.iframeOk( {id: fields.id, data: data} );
+								   //resp.iframeOk( { data: data} );
                                 }
                             })
                             return;
                         }
                         var data = newLines(stdout.toString());
                         resp.iframeOk( {id: fields.id, data: data} );
-
+						//resp.iframeOk( { data: data} );
                     });
                 //});
             /*
