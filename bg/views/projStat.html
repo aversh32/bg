@@ -39,22 +39,36 @@
             </div>
             {{/foreach}}
             <script language="JavaScript">
-
+function check()
+{
+    var inp = document.getElementsByName('pay');
+	window.console.log("check");
+    for (var i = 0; i < inp.length; i++) {
+        if (inp[i].type == "radio" && inp[i].checked && inp[i].value=="card") {
+            $('.pay_frame_js').slideDown();
+			$('.add_money_select_js').slideUp();
+        }
+		else if (inp[i].type == "radio" && inp[i].checked && inp[i].value=="mobile") {
+            $('.pay_frame_js').slideUp();
+			$('.add_money_select_js').slideUp();
+        }
+    }
+}
             </script>
 
             <div class="h3" style="padding-top:30px;clear:both">Методы оплаты</div>
             <div>
                 <label>
-                        <input type="radio" disabled>{{foreach cards}}<img src="/img/pay/{{el.value}}.jpg" height="20px" style="margin:3px">{{/foreach}}Кредитной картой на сайте
+                        <input type="radio" name="pay" value="card">{{foreach cards}}<img src="/img/pay/{{el.value}}.jpg" height="20px" style="margin:3px">{{/foreach}}Кредитной картой на сайте
                 </label>
             </div>
             <div>
                 <label>
-                <input type="radio" checked>Мобильная коммерция
+                <input type="radio" name="pay" value="mobile">Мобильная коммерция
                 </label>
             </div>
             <div class="about-info-link"><a href="#/about/" target="_blank">Ознакомиться с информацией о компании биллинград</a></div>
-            <button type="submit" disabled="disabled" style="display: block;margin: 20px 0 30px;" class="btn btn-primary btn_add_money_real_js" onclick="$('.pay_mob_frame_js').slideDown();$('.add_money_select_js').slideUp();">Перейти к оплате</button>
+            <button type="submit"  style="display: block;margin: 20px 0 30px;" class="btn btn-primary btn_add_money_real_js" onclick="check()">Перейти к оплате</button>
 
         </div>
 
@@ -68,10 +82,10 @@
                 <div class="pay-icos"><img height="21" alt="" src="/img/icons/pay3.jpg"> &nbsp; <img height="34" alt="" src="/img/icons/pay4.jpg"></div>
                 <div class="form-row">
                     <label>Номер карты</label>
-                    <input type="text" class="inp inp2" disabled="disabled">
-                    <input type="text" class="inp inp2" disabled="disabled">
-                    <input type="text" class="inp inp2" disabled="disabled">
-                    <input type="text" class="inp inp2" disabled="disabled">
+                    <input type="text" class="inp inp2" >
+                    <input type="text" class="inp inp2" >
+                    <input type="text" class="inp inp2" >
+                    <input type="text" class="inp inp2" >
                     <div class="clear"></div>
                 </div>
                 <div class="form-row">
@@ -82,7 +96,7 @@
                 </div>
                 <div class="form-row">
                     <label>Держатель карты</label>
-                    <input type="text" class="inp" disabled="disabled">
+                    <input type="text" class="inp" >
                     <div class="clear"></div>
                 </div>
 
@@ -90,7 +104,7 @@
             <div class="pay-bl pay-right">
                 <div class="form-row">
                     <label>CVC / CCV</label>
-                    <input type="text" class="inp inp2" disabled="disabled">
+                    <input type="text" class="inp inp2" >
                     <div class="help">
                         <img alt="" src="/img/icons/qv.png">
                         <div class="help-sh"><img alt="" src="/img/bg/sm-card.png"></div>

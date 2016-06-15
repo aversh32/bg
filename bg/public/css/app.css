@@ -328,7 +328,7 @@
     border-radius: 6px;
 }
 .pay-bl .ffSelect > a > span {
-    background: url("img/bg/sell.jpg") no-repeat scroll right center rgba(0, 0, 0, 0);
+    background: url("/../img/bg/sell.jpg") no-repeat scroll right center rgba(0, 0, 0, 0); /*new*/
     border: 1px solid #CCCCCC;
     border-radius: 6px;
     color: #000000;
